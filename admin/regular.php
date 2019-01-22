@@ -40,7 +40,8 @@ th{
 
 		<form action="<?php $_SERVER["PHP_SELF"];?>" method="post" >
 			Year<select name="year">
-  				<option value="2019">2018</option>
+  				<option value="2019">2019</option>
+  				<option value="2018">2018</option>
 			</select>
 			Month<select name="month">
     			<option value='01'>January</option>
@@ -56,6 +57,40 @@ th{
 			    <option value='11'>November</option>
 			    <option value='12'>December</option>
     		</select> 
+    		Day<select id="day_start" 
+          name="day_start" /> 
+			    <option>1</option>       
+			    <option>2</option>       
+			    <option>3</option>       
+			    <option>4</option>       
+			    <option>5</option>       
+			    <option>6</option>       
+			    <option>7</option>       
+			    <option>8</option>       
+			    <option>9</option>       
+			    <option>10</option>       
+			    <option>11</option>       
+			    <option>12</option>       
+			    <option>13</option>       
+			    <option>14</option>       
+			    <option>15</option>       
+			    <option>16</option>       
+			    <option>17</option>       
+			    <option>18</option>       
+			    <option>19</option>       
+			    <option>20</option>       
+			    <option>21</option>       
+			    <option>22</option>       
+			    <option>23</option>       
+			    <option>24</option>       
+			    <option>25</option>       
+			    <option>26</option>       
+			    <option>27</option>       
+			    <option>28</option>       
+			    <option>29</option>       
+			    <option>30</option>       
+			    <option>31</option>       
+			  </select>
 			<button type="submit">SUBMIT</button>
 </form>
 <table border="0" >
@@ -71,10 +106,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $year=$_POST['year'];
 $month=$_POST['month'];
-
+$day=$_POST['day_start'];
+//where quenumber like '%$a%';
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-$result=mysqli_query($link, "SELECT * FROM que1 where teller=1;");
+$result=mysqli_query($link, "SELECT * FROM que1 where dtime like '%$year-$month-$day%';");
 
 
 

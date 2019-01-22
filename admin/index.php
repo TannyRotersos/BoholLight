@@ -54,7 +54,7 @@ font-size: 40px;
    <br><br>
     <a href="senior.php" ><button class="buttonask1">SENIOR CITIZENS</button></a>
     <a href="regular.php" ><button class="buttonask2">ORDINARY CUSTOMERS</button></a><br>
-     <a href="#" ><button class="buttonask1">EDIT USER ACCOUNT</button></a>
+     <a href="edit.php" ><button class="buttonask1">EDIT USER ACCOUNT</button></a>
      <a href="#" ><button class="buttonask2"></button></a>
 
      </div> 

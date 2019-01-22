@@ -19,40 +19,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $user1=$_POST['user'];
 $pass1=$_POST['pass'];
-
+    
 
 $result=mysqli_query($link, "SELECT * FROM users where userid='$user1';");
 
 for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 
 	$tellerid=$num_rows["userid"];
+	$pass=$num_rows["pass"];
+	$link=$num_rows["link"];
 	$online=$num_rows["online"];
 
 
-if($user1=='teller1'&&$pass1==12345&&$online==0){
-	mysqli_query($link, "UPDATE users SET online=1 where userid='$user1';");
-	header('Location: teller/teller1.php');
+if($user1==$tellerid&&$pass1==$pass&&$online=='0'){
+	mysqli_query($link, "UPDATE users set online='1' where link='$link'");
+	header('Location: '.$link);
 
 }
-else if($user1=='teller2'&&$pass1==12345&&$online==0){
-		mysqli_query($link, "UPDATE users SET online=1 where userid='$user1';");
-	header('Location: teller/teller2.php');
-}
-else if($user1=='teller3'&&$pass1==12345&&$online==0){
-		mysqli_query($link, "UPDATE users SET online=1 where userid='$user1';");
-	header('Location: teller/teller3.php');
-}
-else if($user1=='admin'&&$pass1==12345){
-	header('Location: admin.html');
-}
-else if($user1=='teller1'||$user1=='teller2'||$user1=='teller3'&&$pass1==12345&&$online==1){
+else if($user1==$tellerid&&$pass1==$pass&&$online=='1'){
 	$err="Teller is already online";
 }
 else{
 	$err="Teller Id or Password is Incorrect";
 }
-
 }
+
+
 
 }
 ?>

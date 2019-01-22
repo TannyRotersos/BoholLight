@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	<form>
+	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>">
 	Username:<input type="text" name="username" id="user" required><br><br>
 	Old Password:<input type="text" name="oldpass" id="oldp" required><br><br>
 	New Password:<input type="password" name="newpass" id="newpass" required><br><br>
@@ -38,5 +38,25 @@ function validation(){
 
 }
 </script>
+<?php
+
+$hostname="localhost";
+$user="root";
+$password="";
+$database="queuing";
+
+
+
+$link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
+mysqli_select_db($link, $database) or die ("Error creating database");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$user=$_POST['username'];
+$oldpass=$_POST['oldpass'];
+$newpass=$_POST['newpass'];
+mysqli_query($link, "UPDATE users set pass='$newpass' where userid='$user' and pass='$oldpass'");
+}
+?>
+
 </body>
 </html>
