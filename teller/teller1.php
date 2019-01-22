@@ -144,11 +144,11 @@ $destination_file1 = $destination_path."serverfile1.txt";
 // upload file
 if (ftp_put($ftp_conn, $destination_file1, $file1, FTP_ASCII))
   {
-  echo "";
+  echo "Success";
   }
 else
   {
-  echo "";
+  echo "Cant connect";
   }
 // close connection
 ftp_close($ftp_conn);
