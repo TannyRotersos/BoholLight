@@ -11,6 +11,20 @@ $database="queuing";
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
 
+if(isset($_SESSION['iD'])){
+	$id=$_SESSION['iD'];
+$result=mysqli_query($link, "SELECT * FROM users where userid='$id';");
+
+for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
+
+	$tellerid=$num_rows["userid"];
+	$pass=$num_rows["pass"];
+	$link=$num_rows["link"];
+	$stat=$num_rows["stat"];
+	header('Location: '.$link);
+}
+}
+
 
 $err="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

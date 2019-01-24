@@ -1,3 +1,24 @@
+<?php
+session_start();
+if(!$_SESSION["iD"]){
+    //Do not show protected data, redirect to login...
+    header("Location: ../user.php");
+}
+
+$userid=$_SESSION["iD"];
+$_SESSION["id"] = $userid;
+
+$hostname="localhost";
+$user="root";
+$password="";
+$database="queuing";
+
+$link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
+mysqli_select_db($link, $database) or die ("Error creating database");
+mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
+
+?>
+
 <html>
 <head>
     <title></title>
@@ -51,13 +72,15 @@ font-size: 40px;
      <div class="nin">
     
 <h1><center>Customer's Records</center></h1>
-   <br><br>
+ 
     <a href="senior.php" ><button class="buttonask1">SENIOR CITIZENS</button></a>
     <a href="regular.php" ><button class="buttonask2">ORDINARY CUSTOMERS</button></a><br>
      <a href="edit.php" ><button class="buttonask1">EDIT USER ACCOUNT</button></a>
-     <a href="#" ><button class="buttonask2"></button></a>
-
-     </div> 
+     <a href="#" ><button class="buttonask2">CREATE NEW ACCOUNT</button></a>
+<form action="../teller/logout.php" method="POST">
+            <button type="submit" name="get" class="paysub">Logout</button>
+        </form>
+     </div>
     
    
 </body>
