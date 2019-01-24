@@ -7,7 +7,7 @@
 
 	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>">
 	Username:<input type="text" name="username" id="user" required><br><br>
-	Old Password:<input type="text" name="oldpass" id="oldp" required><br><br>
+	Old Password:<input type="password" name="oldpass" id="oldp" required><br><br>
 	New Password:<input type="password" name="newpass" id="newpass" required><br><br>
 	Confirm New Password:<input type="password" name="cnewpass" id="cnewpass" onkeyup="validation()" required><span id="msg"></span><br><br>
 	<button id="submit" value="submit">Submit</button>
@@ -56,6 +56,10 @@ $user=$_POST['username'];
 $oldpass=$_POST['oldpass'];
 $newpass=$_POST['newpass'];
 mysqli_query($link, "UPDATE users set pass='$newpass' where userid='$user' and pass='$oldpass'");
+
+echo '<script language="javascript">';
+echo 'alert("Account Successfully Edited!")';
+echo '</script>';
 }
 ?>
 

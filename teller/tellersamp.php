@@ -1,18 +1,28 @@
 <?php
 
+session_start();
+if(!$_SESSION["iD"]){
+    //Do not show protected data, redirect to login...
+    header("Location: ../user.php");
+}
+
+
+date_default_timezone_set("Asia/Hong_Kong");
 $hostname="localhost";
 $user="root";
 $password="";
 $database="queuing";
 
-$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r='';
+$userid=$_SESSION["iD"];
+$_SESSION["id"] = $userid;
+$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
 
 
 
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-
+mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -22,11 +32,13 @@ $result=mysqli_query($link, "SELECT MIN(quenumber) as 'new' FROM que where tapos
 for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 $a=$num_rows["new"];
 }
+
+if($a!==null){
 //===============================================================
-mysqli_query($link, "UPDATE que SET taposna=1 where quenumber=$a;");
+mysqli_query($link, "UPDATE que SET taposna=1,teller=1 where quenumber='$a';");
 //===============================================================
-$result1=mysqli_query($link, "SELECT * FROM que1 where quenumber like '%$a%' AND taposna=0");
-         mysqli_query($link, "UPDATE que1 SET taposna=1 where quenumber like '%$a%';");
+$result1=mysqli_query($link, "SELECT * FROM que where quenumber=$a");
+         mysqli_query($link, "UPDATE que1 SET taposna=1,teller=1 where quenumber like '%$a%';");
 for($i=0; $i<$num_rows=mysqli_fetch_array($result1);$i++){
 $b=$num_rows["quenumber"];
 $d=$num_rows["name"];
@@ -35,6 +47,9 @@ $f=$num_rows["amount"];
 $g=$num_rows["name2"];
 $h=$num_rows["accountnum2"];
 $in=$num_rows["amount2"];
+$aa=$num_rows["priority"];
+$bb=$num_rows["taposna"];
+$cc=$num_rows["contact"];
 $j=$num_rows["name3"];
 $k=$num_rows["accountnum3"];
 $l=$num_rows["amount3"];
@@ -45,8 +60,108 @@ $p=$num_rows["taposna"];
 $q=$num_rows["contact"];
 }
 //===============================================================
-mysqli_query($link, "INSERT INTO display(quenumber, teller) VALUES ('$b',1)");
+mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=1");
 //===============================================================
+
+}
+
+//#############################Here starts the sms notification
+$sms=$a+5;
+$a1=$a2=$a3=$a4=$a5=$a6=$a7=$a8=$a9=$a10=$a11=$a12=$a13=$a14=$a15=$a16=$in1='';
+$cc1='';
+
+$result1=mysqli_query($link, "SELECT * FROM que where quenumber=$sms");
+for($i=0; $i<$num_rows=mysqli_fetch_array($result1);$i++){
+$a1=$num_rows["quenumber"];
+$a2=$num_rows["name"];
+$a3=$num_rows["accountnum"];
+$a4=$num_rows["amount"];
+$a5=$num_rows["name2"];
+$a6=$num_rows["accountnum2"];
+$in1=$num_rows["amount2"];
+$a7=$num_rows["priority"];
+$a8=$num_rows["taposna"];
+$cc1=$num_rows["contact"];
+$a9=$num_rows["name3"];
+$a10=$num_rows["accountnum3"];
+$a11=$num_rows["amount3"];
+$a12=$num_rows["name4"];
+$a13=$num_rows["accountnum4"];
+$a14=$num_rows["amount4"];
+$a15=$num_rows["taposna"];
+}
+
+//##########################################################################
+
+//##########################################################################
+// ITEXMO SEND SMS API - PHP - CURL METHOD
+// Visit www.itexmo.com/developers.php for more info about this API
+//##########################################################################
+function itexmo($number,$message,$apicode){
+      $ch = curl_init();
+      $itexmo = array('1' => $number, '2' => $message, '3' => $apicode);
+      curl_setopt($ch, CURLOPT_URL,"https://www.itexmo.com/php_api/api.php");
+      curl_setopt($ch, CURLOPT_POST, 1);
+       curl_setopt($ch, CURLOPT_POSTFIELDS, 
+                http_build_query($itexmo));
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      return curl_exec ($ch);
+      curl_close ($ch);
+}
+//##########################################################################
+
+if($cc1==null||$cc1==''){
+  $result = itexmo("09094420621","Bohol Light Company Inc.\nis now serving priority number $aa. Please be ready. \n\nYou can inquire the current number served by the teller! Just reply BLCIQ to this message. You can also view it online by visiting https://blci.000webhostapp.com/","DE-TANNY941655_25SU7");
+}
+else{
+ $result = itexmo("$cc1","Bohol Light Company Inc.\nNow serving priority number $aa. Please be ready.","DE-TANNY941655_25SU7");
+}
+
+if ($result == ""){
+echo "";  
+}else if ($result == 0){
+echo "";
+}
+else{ 
+echo "Error Num ". $result . " was encountered!";
+}
+//##########################################################################
+
+
+$n1=date('h:i a');
+//========================
+$myfile = fopen("../tests/teller1.txt", "w") or die("Unable to open file!");
+if($b==null||$b==''){
+  $txt = "--";
+}
+else{
+  $txt = "$aa ($n1)";
+}
+fwrite($myfile, $txt);
+fclose($myfile);
+//========================
+
+// connect and login to FTP server
+$destination_path = "public_html/"; 
+$ftp_server = "files.000webhost.com";
+$ftp_conn = ftp_connect($ftp_server) or die("Could not connect to $ftp_server");
+$login = ftp_login($ftp_conn, "blci", "intrudertanny");
+
+$file1 = "../tests/teller1.txt";
+$destination_file1 = $destination_path."serverfile1.txt";
+
+// upload file
+if (ftp_put($ftp_conn, $destination_file1, $file1, FTP_ASCII))
+  {
+  echo "Success";
+  }
+else
+  {
+  echo "Cant connect";
+  }
+// close connection
+ftp_close($ftp_conn);
+
 
 
 }
@@ -55,17 +170,28 @@ mysqli_query($link, "INSERT INTO display(quenumber, teller) VALUES ('$b',1)");
 
 
 <html>
+<head>
     <meta charset="utf-8"/>
         <meta type="viewport" content="width=device=width, initial-scale=1.0">
             <link rel="stylesheet" href="../style/style1.css" type="text/css"/>
-    
+<style type="text/css">
+      
+     .disp1{
+    margin: 0%;
+    width: 75%;
+    height: 19%;
+}
+     </style>
+</head>    
 <body onload="play(); deleteRow();">
+  <center><img src="../img/3.png" class="disp1">
+</center>
    <center>
        <br><br>
         <hr width="80%" size="5px" align="center" color="orangered">
         <table class="table1" id="tellertab">
         <tr>
-          <td colspan="3"><center><o>QUEUE NUMBER &nbsp;&nbsp;</o><n><b><?php echo "$b";?></b></n></center></td>
+          <td colspan="3"><center><o>QUEUE NUMBER &nbsp;&nbsp;</o><n><b><?php echo "$aa";?></b></n></center></td>
         </tr>  
         <tr>
           <td>Name</td>
@@ -113,11 +239,13 @@ mysqli_query($link, "INSERT INTO display(quenumber, teller) VALUES ('$b',1)");
             <button type="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
     
-
-    </center>
+    <form action="logout.php" method="POST">
+            <button type="submit" name="get" class="paysub">Logout</button>
+        </form>
     
  <script type="text/javascript" src="jj.js"></script> 
 <script>
+ 
  //==============================================================
  function deleteRow()  
 {   
@@ -164,7 +292,6 @@ var auto_refresh = setInterval( function() {
   $('#links').load('waiting.php'); 
 }, 1000); 
  
-    window.onbeforeunload = function() { return "Please Log out Before Closing Tabs!"; }      
    </script>
 
 <audio id="audio" src="1.mp3" ></audio>

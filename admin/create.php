@@ -6,24 +6,29 @@
 <body>
 
 	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>">
-	Name:<input type="text" name="username" id="user" required><br><br>
-	Lastname:<input type="text" name="username" id="user" required><br><br>
-	Age:<input type="text" name="username" id="user" required><br><br>
-	Address:<input type="text" name="username" id="user" required><br><br>
+	Name:<input type="text" name="fname" id="fname" required><br><br>
+	Lastname:<input type="text" name="lname" id="lname" required><br><br>
+	Age:<input type="text" name="age" id="age" required><br><br>
+	Address:<input type="text" name="add" id="add" required><br><br>
+	Contact Number:<input type="text" name="cnum" id="cnum" required><br><br>
 	Username:<input type="text" name="username" id="user" required><br><br>
-	New Password:<input type="password" name="newpass" id="newpass" required><br><br>
+	Account Type:<select name="actype" id="actype">
+		<option value="teller/teller1.php">Regular Teller Account</option>
+		<option value="teller/teller4.php">Special Lane Teller Account</option>
+		<option value="admin/index.php">Admin Account</option>
+		
+	</select><br><br>
+	Password:<input type="password" name="newpass" id="newpass" required><br><br>
 	Confirm New Password:<input type="password" name="cnewpass" id="cnewpass" onkeyup="validation()" required><span id="msg"></span><br><br>
 	<button id="submit" value="submit">Submit</button>
 </form>
+<br><br>
 <a href="index.php"><button>BACK</button></a>
 
 <script type="text/javascript">
 
-	var d1=document.getElementById("user").value;
-	var d2=document.getElementById("oldp").value;
-if(d1==''&&d2==''){
+	
  document.getElementById("submit").style.visibility = "hidden";
-}
 
 function validation(){
 	
@@ -55,10 +60,25 @@ $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$user=$_POST['username'];
-$oldpass=$_POST['oldpass'];
-$newpass=$_POST['newpass'];
-mysqli_query($link, "UPDATE users set pass='$newpass' where userid='$user' and pass='$oldpass'");
+
+$fname=$_POST['fname'];
+$lname=$_POST['lname'];
+$age=$_POST['age'];
+$add=$_POST['add'];
+$username=$_POST['username'];
+$actype=$_POST['actype'];
+$cnewpass=$_POST['cnewpass'];
+$cnum=$_POST['cnum'];
+
+mysqli_query($link, "INSERT INTO accounts (userid, pass, link, accountype, stat, fname, lname, age,address,contact) VALUES ('$username','$cnewpass', '$actype','',0, '$fname', '$lname', $age, '$add', $cnum);");
+
+
+
+
+echo '<script language="javascript">';
+echo 'alert("Account Successfully Created!")';
+echo '</script>';
+
 }
 ?>
 
