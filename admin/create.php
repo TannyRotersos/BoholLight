@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Edit User Account</title>
+	<title>Create New Account</title>
 </head>
 <body>
 
 	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>">
+	Name:<input type="text" name="username" id="user" required><br><br>
+	Lastname:<input type="text" name="username" id="user" required><br><br>
+	Age:<input type="text" name="username" id="user" required><br><br>
+	Address:<input type="text" name="username" id="user" required><br><br>
 	Username:<input type="text" name="username" id="user" required><br><br>
-	Old Password:<input type="text" name="oldpass" id="oldp" required><br><br>
 	New Password:<input type="password" name="newpass" id="newpass" required><br><br>
 	Confirm New Password:<input type="password" name="cnewpass" id="cnewpass" onkeyup="validation()" required><span id="msg"></span><br><br>
 	<button id="submit" value="submit">Submit</button>
 </form>
-<br>
 <a href="index.php"><button>BACK</button></a>
+
 <script type="text/javascript">
 
 	var d1=document.getElementById("user").value;

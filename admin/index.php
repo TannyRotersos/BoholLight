@@ -76,7 +76,7 @@ font-size: 40px;
     <a href="senior.php" ><button class="buttonask1">SENIOR CITIZENS</button></a>
     <a href="regular.php" ><button class="buttonask2">ORDINARY CUSTOMERS</button></a><br>
      <a href="edit.php" ><button class="buttonask1">EDIT USER ACCOUNT</button></a>
-     <a href="#" ><button class="buttonask2">CREATE NEW ACCOUNT</button></a>
+     <a href="create.php" ><button class="buttonask2">CREATE NEW ACCOUNT</button></a>
 <form action="../teller/logout.php" method="POST">
             <button type="submit" name="get" class="paysub">Logout</button>
         </form>
