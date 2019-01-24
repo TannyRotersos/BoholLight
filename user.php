@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $hostname="localhost";
 $user="root";
 $password="";
@@ -28,15 +28,14 @@ for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 	$tellerid=$num_rows["userid"];
 	$pass=$num_rows["pass"];
 	$link=$num_rows["link"];
-	$online=$num_rows["online"];
+	$stat=$num_rows["stat"];
 
-
-if($user1==$tellerid&&$pass1==$pass&&$online=='0'){
-	mysqli_query($link, "UPDATE users set online='1' where link='$link'");
+if($user1==$tellerid&&$pass1==$pass&&$stat==0){
+	$_SESSION["iD"] = $user1;
 	header('Location: '.$link);
-
+	
 }
-else if($user1==$tellerid&&$pass1==$pass&&$online=='1'){
+else if($user1==$tellerid&&$pass1==$pass&&$stat==1){
 	$err="Teller is already online";
 }
 else{

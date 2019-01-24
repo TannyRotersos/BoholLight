@@ -1,11 +1,20 @@
 <?php
-date_default_timezone_set("Asia/Hong_Kong");
 
+session_start();
+if(!$_SESSION["iD"]){
+    //Do not show protected data, redirect to login...
+    header("Location: ../user.php");
+}
+
+
+date_default_timezone_set("Asia/Hong_Kong");
 $hostname="localhost";
 $user="root";
 $password="";
 $database="queuing";
 
+$userid=$_SESSION["iD"];
+$_SESSION["id"] = $userid;
 $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
 
 
@@ -13,7 +22,7 @@ $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-
+mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 //===============================================================
@@ -222,7 +231,9 @@ ftp_close($ftp_conn);
             <button type="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
     
-
+ <form action="logout.php" method="POST">
+            <button type="submit" name="get" class="paysub">Logout</button>
+        </form>
     </center>
     
  <script type="text/javascript" src="jj.js"></script> 
