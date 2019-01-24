@@ -270,7 +270,7 @@ INSERT INTO `users` (`userid`, `pass`, `link`, `stat`) VALUES
 ('teller2', '12345', 'teller/teller2.php', 0),
 ('teller3', '12345', 'teller/teller3.php', 0),
 ('teller4', '12345', 'teller/teller4.php', 0),
-('admin', '12345', 'admin/index.php', 1);
+('admin', '12345', 'admin/index.php', 0);
 
 --
 -- Indexes for dumped tables
