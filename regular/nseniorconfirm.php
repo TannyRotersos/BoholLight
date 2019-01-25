@@ -91,11 +91,11 @@ session_destroy();
      </head>
 <body onload="deleteRow()">
     
-   <center><img src="../img/3.png" class="disp1">
+   <center>
 </center>   
-   
+   <br><br><br>
     
-    <table>
+    <table id="tellertab">
         <center>
     <tr>
         <td colspan="2">Your Queue Number is <b><?php echo "BL$a_padded";?></b></td>

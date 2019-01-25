@@ -2,18 +2,31 @@
 <html>
 <head>
 	<title>Edit User Account</title>
+	<meta charset="utf-8"/>
+        <meta type="viewport" content="width=device=width, initial-scale=1.0">
+     <link rel="stylesheet" href="../style/style.css" type="text/css"/>
+
 </head>
 <body>
-
+	
+<br><br><center>
+	<v>EDIT ACCOUNT </v>
+<br>
+<center>
+<div class="create1">
 	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>">
-	Username:<input type="text" name="username" id="user" required><br><br>
-	Old Password:<input type="password" name="oldpass" id="oldp" required><br><br>
-	New Password:<input type="password" name="newpass" id="newpass" required><br><br>
-	Confirm New Password:<input type="password" name="cnewpass" id="cnewpass" onkeyup="validation()" required><span id="msg"></span><br><br>
-	<button id="submit" value="submit">Submit</button>
+	<input type="text" name="username" id="user"class="create" placeholder="Username" required><br>
+	<input type="password" name="oldpass" id="oldp" class="create" placeholder="Old Password"required><br>
+	<input type="password" name="newpass" id="newpass"class="create" placeholder="New Password"required><br>
+
+	<input type="password" name="cnewpass" id="cnewpass"class="create" placeholder="Confirm Password"onkeyup="validation()" required><span id="msg"></span><br><br>
+
+</div>
+<div class="create2">
+<button id="submit" value="submit" class="paycreate">Submit</button>
 </form>
 <br>
-<a href="index.php"><button>BACK</button></a>
+<a href="index.php"><button class="paycreate">BACK</button></a>
 <script type="text/javascript">
 
 	var d1=document.getElementById("user").value;

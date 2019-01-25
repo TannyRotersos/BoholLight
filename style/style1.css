@@ -10,7 +10,11 @@ input:focus{
 }
 
 body{
-	background-image: url(img/);
+    width: 100%;
+    margin: 0 auto;
+    background-image: url('../img/bg.jpg');
+    background-size: 100%;
+    background-position:  center;
 }
 
 .nin{
@@ -35,7 +39,7 @@ l{
 
 o{
 	font-family: Arial;
-	font-size: 70px;
+	font-size: 40px;
 }
 
 n{
@@ -201,12 +205,11 @@ m{
 table{
 	width: 80%;
 	margin-top: 2%;
-	border: 3px solid orangered;
+	border-collapse: collapse;
 }
 tr{
 	width: 100%;
 	height: 50px;
-	border-top: 3px solid orangered;
 }
 td{
 	width: 20%;
@@ -214,7 +217,17 @@ td{
 	font-family: arial;
 	font-size: 30px;
 	text-align: center;
-	border-top: 3px solid orangered;
 }
+
+#tellertab{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+#tellertab td{
+	border: 1px solid orangered;
+	padding: 8px;
+  }
 
 

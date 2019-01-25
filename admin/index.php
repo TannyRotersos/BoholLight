@@ -66,17 +66,16 @@ font-size: 40px;
      </style>
 </head>
 <body>
+    <br><br>
+<center><x>Records</x></center>
+     <div class="pac">
     
-   <center><img src="../img/3.png" class="disp1">
-</center>
-     <div class="nin">
-    
-<h1><center>Customer's Records</center></h1>
+
  
-    <a href="senior.php" ><button class="buttonask1">SENIOR CITIZENS</button></a>
-    <a href="regular.php" ><button class="buttonask2">ORDINARY CUSTOMERS</button></a><br>
-     <a href="edit.php" ><button class="buttonask1">EDIT USER ACCOUNT</button></a>
-     <a href="create.php" ><button class="buttonask2">CREATE NEW ACCOUNT</button></a>
+    <a href="senior.php" ><button class="buttonadmin1"><d><b>SENIOR CITIZENS</d></button></a>
+    <a href="regular.php" ><button class="buttonadmin2"><d><b>ORDINARY CUSTOMERS</d></button></a><br>
+     <a href="edit.php" ><button class="buttonadmin1"><d><b>EDIT USER ACCOUNT</d></button></a>
+     <a href="create.php" ><button class="buttonadmin2"><d><b>CREATE NEW ACCOUNT</d></button></a>
 <form action="../teller/logout.php" method="POST">
             <button type="submit" name="get" class="paysub">Logout</button>
         </form>

@@ -1,12 +1,35 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style2.css">
+
 <title>Queueing Admin</title>
 
 <style type="text/css">
 .t1{
 	background-color: #F75E29;  
 }
+
+.createe{
+	width: 10%;
+	height: 50px;
+	font-family: arial;
+	font-size: 23px;
+	border: 2px solid orangered;
+	margin-top: 1%;
+}
+
+.paycreate{
+	width: 10%;
+	height:50px;
+	background-color: orangered;
+	color: white;
+	font-family: arial;
+	font-size: 30px;
+	margin-top: 1%;
+	border-radius: 3px;
+}
+
+
 td{
 	width:220px;
 	padding: 5px;
@@ -39,11 +62,13 @@ th{
 	<center>
 
 		<form action="<?php $_SERVER["PHP_SELF"];?>" method="post" >
-			Year<select name="year">
+			<select name="year" class="createe">
+			<option value="" disabled selected>Year</option>
   				<option value="2019">2019</option>
   				<option value="2018">2018</option>
 			</select>
-			Month<select name="month">
+			<select name="month" class="createe">
+			<option value="" disabled selected>Month</option>
     			<option value='01'>January</option>
 			    <option value='02'>February</option>
 			    <option value='03'>March</option>
@@ -57,8 +82,9 @@ th{
 			    <option value='11'>November</option>
 			    <option value='12'>December</option>
     		</select> 
-    		Day<select id="day_start" 
+    		<select id="day_start" class="createe"
           name="day_start" /> 
+			<option value="" disabled selected>Day</option>
 			    <option>1</option>       
 			    <option>2</option>       
 			    <option>3</option>       
@@ -91,7 +117,7 @@ th{
 			    <option>30</option>       
 			    <option>31</option>       
 			  </select>
-			<button type="submit">SUBMIT</button>
+			<button type="submit" class="paycreate">SUBMIT</button>
 </form>
 <table border="0" >
 
@@ -184,7 +210,7 @@ $r=$num_rows["teller"];
 
 	
 
-<br><br><a href="index.php"><input type="button" value="Back to Menu"></a>
+<br><br><a href="index.php"><input type="button" class="paycreate" value="Back"></a>
 </center>
 </body>
 	</html>

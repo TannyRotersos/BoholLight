@@ -174,12 +174,10 @@ ftp_close($ftp_conn);
      </style>
 </head>    
 <body onload="play(); deleteRow();">
-  <center><img src="../img/3.png" class="disp1">
 </center>
    <center>
        <br><br>
-        <hr width="80%" size="5px" align="center" color="orangered">
-        <table class="table1" id="tellertab">
+        <table class="table1" id="tellertab" >
         <tr>
           <td colspan="3"><center><o>QUEUE NUMBER &nbsp;&nbsp;</o><n><b><?php echo "$b";?></b></n></center></td>
         </tr>  
@@ -223,14 +221,13 @@ ftp_close($ftp_conn);
  
         <div id="links"></div>
        
-        <hr width="80%" size="5px" align="center" color="orangered">
         
         <form action="<?php $_SERVER["PHP_SELF"];?>" method="POST">
-            <button type="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
+            <button type="submit" name="get" style="width: 20%; height: 50px;background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
     
  <form action="logout.php" method="POST">
-            <button type="submit" name="get" class="paysub">Logout</button>
+            <button type="submit" name="get" style="width: 20%; height: 50px; background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%">Logout</button>
         </form>
     </center>
     

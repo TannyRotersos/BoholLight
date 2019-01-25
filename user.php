@@ -50,10 +50,10 @@ if($user1==$tellerid&&$pass1==$pass&&$stat==0){
 	
 }
 else if($user1==$tellerid&&$pass1==$pass&&$stat==1){
-	$err="Teller is already online";
+	$err="Account is already online";
 }
 else{
-	$err="Teller Id or Password is Incorrect";
+	$err="Account Id or Password is Incorrect";
 }
 }
 
@@ -66,57 +66,34 @@ else{
 
 <html>
 <head>
-	        <link rel="stylesheet" href="style.css" type="text/css"/>
+			<meta charset="utf-8"/>
+	          <meta name="viewport" content="width=device=width,initial-scale=1.0">
+			<link rel="stylesheet" href="style/style.css" type="text/css"/>
+
+			<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script>
         window.onload = disableBack();    
 </script>
-
-<!--<style type="text/css">
-body{
-	background-image: url(img/m1.jpg);
-	color: white;
-	font-size: 22px;
-	font-family: 'Century Gothic';
-}
-.btn{
-	font-family: 'Century Gothic';
-	font-size: 20px;
-}
-.pos{
-	float: left;
-	position: relative;
-	left: 35%;
-	width: 30%;
-	
-}
-.ta{
-	border-top: 0px;
-	border-left: 0px;
-	border-right: 0px;
-	background-color: rgba(0,0,0,0);
-	width: 45%;
-	border-bottom: 2px solid #00FFFF;
-	font-size: 22px;
-	color: white;
-
-}
-input:focus{
-    outline: none;
-}
-
-</style>--></head>
+</head>
 <body>
-<br><br><br><br><br><br>
+<br><br>
+<center>
+	<br><br>
 <div class="pos">
-
+		<h>LOG IN </h>
 		<form action="<?php $_SERVER["PHP_SELF"];?>" method="post" >
-&nbsp;&nbsp;User ID: <input type="text" class="ta" name="user" ><br><br>
-PASSWORD:&nbsp;&nbsp;<input type="password" class="ta" name="pass"> <br><br>
+		<i class="material-icons" style="font-size:30px;color:orangered;">person</i>			
 
-<div style="color:#9D1A0A;font-size:18px;"><?php echo $err;?></div><br><br>
+		<input type="text" name="user" style="width: 30%;font-family: arial;font-size: 30px;border: 2px solid orangered;"><br><br>
+		<i class="material-icons" style="font-size:30px;color:orangered;">lock</i>
+<input type="password" name="pass" style="width: 30%;font-family: arial;font-size: 30px;border: 2px solid orangered;"> 
 
-<center><input type="SUBMIT" class="btn" value="Login"></center>
+<div style="color:#9D1A0A;font-size:18px;"><br><?php echo $err;?></div>
+
+<input type="SUBMIT" style="width: 30%;background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%" value="Login"></center>
 </form>
 
 </div>

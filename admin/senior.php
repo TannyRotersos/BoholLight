@@ -12,17 +12,19 @@
 }*/
 .t1{
 	background-color: #F75E29;  
+	font-size: 15px;
 }
 td{
 	width:220px;
 	padding: 5px;
 	border-radius: 2px;
 	background-color: #FAD1C3;  
+	font-size: 13px;
 }
 table{
 	font-family:'Century Gothic';
 	color: #515355 ;
-	font-size: 18px;
+	font-size: 15px;
 	padding: 0px;
 	width: 100%;
 	border-spacing: 1px;
@@ -31,7 +33,7 @@ table{
 th{
 	width:220px;
 	 border-radius: 2px;
-	 font-size: 20px;
+	 font-size: 15px;
 	 color: white;
 }
 .tds{
@@ -93,9 +95,7 @@ $r=$num_rows["teller"];
 
 </table>
 
-	
-
-<br><br><a href="admin.php"><input type="button" class="button1"  value="Back to Menu"></a>
+<br><a href="index.php"><input type="button" class="paysub"  value="Back to Menu"></a>
 </center>
 </body>
 	</html>

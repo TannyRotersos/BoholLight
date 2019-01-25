@@ -2,28 +2,41 @@
 <html>
 <head>
 	<title>Create New Account</title>
+	<meta charset="utf-8"/>
+        <meta type="viewport" content="width=device=width, initial-scale=1.0">
+     <link rel="stylesheet" href="../style/style.css" type="text/css"/>
+
 </head>
 <body>
+	<br><br><center>
+	<v>CREATE ACCOUNT </v>
+<br>
+<center>
+	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>" >
+	<br>
+	<div class="create1">
+	<input type="text" name="fname" id="fname" class="create" placeholder="Name" required><br>
+	<input type="text" name="lname" id="lname" class="create" placeholder="Lastname"required><br>
+	<input type="text" name="age" id="age" class="create" placeholder="Age" required><br>
+	<input type="text" name="add" id="add" class="create"placeholder="Address" required><br>
+	<input type="text" name="cnum" id="cnum" class="create" placeholder="Contact Number"required><br>
 
-	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>">
-	Name:<input type="text" name="fname" id="fname" required><br><br>
-	Lastname:<input type="text" name="lname" id="lname" required><br><br>
-	Age:<input type="text" name="age" id="age" required><br><br>
-	Address:<input type="text" name="add" id="add" required><br><br>
-	Contact Number:<input type="text" name="cnum" id="cnum" required><br><br>
-	Username:<input type="text" name="username" id="user" required><br><br>
-	Account Type:<select name="actype" id="actype">
+	<select name="actype" id="actype" class="create" placeholder="Account Type">
 		<option value="teller/teller1.php">Regular Teller Account</option>
 		<option value="teller/teller4.php">Special Lane Teller Account</option>
 		<option value="admin/index.php">Admin Account</option>
+		</select></div>
+
+		<div class="create2">
+	<input type="text" name="username" id="user" class="create"placeholder="Username" required><br>
 		
-	</select><br><br>
-	Password:<input type="password" name="newpass" id="newpass" required><br><br>
-	Confirm New Password:<input type="password" name="cnewpass" id="cnewpass" onkeyup="validation()" required><span id="msg"></span><br><br>
-	<button id="submit" value="submit">Submit</button>
+	
+<input type="password" name="newpass" id="newpass"class="create" placeholder="Password" required><br>
+	<input type="password" name="cnewpass" id="cnewpass" class="create" placeholder="Confirm Password"onkeyup="validation()" require><br>
+	<div id="msg" style="color:#9D1A0A;font-size:18px;"></div><br>
+	<button id="submit" value="submit" class="paycreate">Submit</button>
 </form>
-<br><br>
-<a href="index.php"><button>BACK</button></a>
+<a href="index.php"><button class="paycreate">Back</button></a>
 
 <script type="text/javascript">
 
@@ -38,9 +51,10 @@ function validation(){
 	if(pass1!==pass2){
 		document.getElementById("msg").style.color = "#ff0000";
 		document.getElementById("msg").innerHTML="Password Not Matched!";
+		document.getElementById("submit").style.visibility = "initial";
 	}
 	else{
-		document.getElementById("msg").style.color = "#038F25";
+		document.getElementById("msg").style.color = "#9D1A0A";
 		document.getElementById("msg").innerHTML="Password Matched!";
 		document.getElementById("submit").style.visibility = "visible";
 	}
