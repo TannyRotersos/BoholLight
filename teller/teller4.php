@@ -12,7 +12,7 @@ $user="root";
 $password="";
 $database="queuing";
 $userid=$_SESSION["iD"];
-$_SESSION["id"] = $userid;
+$_SESSION["user"]=$userid;
 $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r='';
 
 
@@ -20,7 +20,7 @@ $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r='';
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
+mysqli_query($link, "UPDATE users set stat='online' where userid='$userid';");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -57,6 +57,10 @@ $q=$num_rows["contact"];
 mysqli_query($link, "UPDATE display SET quenumber='$b' where teller=4");
 
 //===============================================================
+}
+else{
+  mysqli_query($link, "UPDATE display SET quenumber='' where teller=4");
+
 }
 
 //#############################Here starts the sms notification
@@ -226,7 +230,7 @@ ftp_close($ftp_conn);
             <button type="submit" name="get" style="width: 20%; height: 50px;background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
     
- <form action="logout.php" method="POST">
+ <form action="logout4.php" method="POST">
             <button type="submit" name="get" style="width: 20%; height: 50px; background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%">Logout</button>
         </form>
     </center>

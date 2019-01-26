@@ -1,3 +1,15 @@
+<?php
+session_start();
+if(!$_SESSION["iD"]){
+    //Do not show protected data, redirect to login...
+    header("Location: ../user.php");
+}
+
+$userid=$_SESSION["iD"];
+$_SESSION["id"] = $userid;
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +97,15 @@ $actype=$_POST['actype'];
 $cnewpass=$_POST['cnewpass'];
 $cnum=$_POST['cnum'];
 
-mysqli_query($link, "INSERT INTO accounts (userid, pass, link, accountype, stat, fname, lname, age,address,contact) VALUES ('$username','$cnewpass', '$actype','',0, '$fname', '$lname', $age, '$add', $cnum);");
+if($actype=="teller/teller1.php"||$actype=="teller/teller4.php"){
+	$cctype="teller";
+}
+else{
+	$cctype="admin";
+}
+ $password_hash = password_hash($cnewpass, PASSWORD_BCRYPT);
+
+mysqli_query($link, "INSERT INTO accounts (userid, pass, link, accountype, stat, fname, lname, age,address,contact) VALUES ('$username','$password_hash', '$actype','$cctype','offline', '$fname', '$lname', $age, '$add', $cnum);");
 
 
 

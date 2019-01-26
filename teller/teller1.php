@@ -14,7 +14,7 @@ $password="";
 $database="queuing";
 
 $userid=$_SESSION["iD"];
-$_SESSION["id"] = $userid;
+$_SESSION["user"]=$userid;
 $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
 
 
@@ -22,7 +22,7 @@ $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
+mysqli_query($link, "UPDATE users set stat='online' where userid='$userid';");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -64,7 +64,10 @@ mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=1");
 //===============================================================
 
 }
+else{
+  mysqli_query($link, "UPDATE display SET quenumber='' where teller=3");
 
+}
 //#############################Here starts the sms notification
 $sms=$a+5;
 $a1=$a2=$a3=$a4=$a5=$a6=$a7=$a8=$a9=$a10=$a11=$a12=$a13=$a14=$a15=$a16=$in1='';
@@ -153,11 +156,11 @@ $destination_file1 = $destination_path."serverfile1.txt";
 // upload file
 if (ftp_put($ftp_conn, $destination_file1, $file1, FTP_ASCII))
   {
-  echo "Success";
+  echo "";
   }
 else
   {
-  echo "Cant connect";
+  echo "";
   }
 // close connection
 ftp_close($ftp_conn);

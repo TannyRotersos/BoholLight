@@ -15,7 +15,7 @@ $database="queuing";
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
+mysqli_query($link, "UPDATE accounts set stat='online' where userid='$userid';");
 
 ?>
 
@@ -77,7 +77,7 @@ font-size: 40px;
     <a href="regular.php" ><button class="buttonadmin2"><d><b>ORDINARY CUSTOMERS</d></button></a><br>
      <a href="edit.php" ><button class="buttonadmin1"><d><b>EDIT USER ACCOUNT</d></button></a>
      <a href="create.php" ><button class="buttonadmin2"><d><b>CREATE NEW ACCOUNT</d></button></a>
-<form action="../teller/logout.php" method="POST">
+<form action="../teller/logout5.php" method="POST">
             <button type="submit" name="get" class="paysub">Logout</button>
         </form>
      </div>

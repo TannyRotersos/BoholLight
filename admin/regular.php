@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(!$_SESSION["iD"]){
+    //Do not show protected data, redirect to login...
+    header("Location: ../user.php");
+}
+
+$userid=$_SESSION["iD"];
+$_SESSION["id"] = $userid;
+?>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/style2.css">

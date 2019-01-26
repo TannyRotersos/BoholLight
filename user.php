@@ -35,7 +35,7 @@ $user1=$_POST['user'];
 $pass1=$_POST['pass'];
     
 
-$result=mysqli_query($link, "SELECT * FROM users where userid='$user1';");
+$result=mysqli_query($link, "SELECT userid,pass,link,stat FROM accounts where userid='$user1';");
 
 for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 
@@ -44,12 +44,13 @@ for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 	$link=$num_rows["link"];
 	$stat=$num_rows["stat"];
 
-if($user1==$tellerid&&$pass1==$pass&&$stat==0){
+
+if($user1==$tellerid&&password_verify($pass1, $pass)&&$stat=='offline'){
 	$_SESSION["iD"] = $user1;
 	header('Location: '.$link);
 	
 }
-else if($user1==$tellerid&&$pass1==$pass&&$stat==1){
+else if($user1==$tellerid&&password_verify($pass1, $pass)&&$stat=='online'){
 	$err="Account is already online";
 }
 else{

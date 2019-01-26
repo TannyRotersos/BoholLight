@@ -1,20 +1,19 @@
 <?php
-
 session_start();
 if(!$_SESSION["iD"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
 }
 
-
 date_default_timezone_set("Asia/Hong_Kong");
+
 $hostname="localhost";
 $user="root";
 $password="";
 $database="queuing";
-
 $userid=$_SESSION["iD"];
-$_SESSION["id"] = $userid;
+$_SESSION["user"]=$userid;
+
 $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
 
 
@@ -22,15 +21,16 @@ $a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
+mysqli_query($link, "UPDATE users set stat='online' where userid='$userid';");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
 
 //===============================================================
 $result=mysqli_query($link, "SELECT MIN(quenumber) as 'new' FROM que where taposna=0;");
 for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 $a=$num_rows["new"];
 }
-
 if($a!==null){
 //===============================================================
 mysqli_query($link, "UPDATE que SET taposna=1,teller=2 where quenumber=$a;");
@@ -61,6 +61,10 @@ $q=$num_rows["contact"];
 mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=2");
 //===============================================================
 }
+else{
+  mysqli_query($link, "UPDATE display SET quenumber='' where teller=2");
+
+}
 //#############################Here starts the sms notification
 $sms=$a+5;
 $a1=$a2=$a3=$a4=$a5=$a6=$a7=$a8=$a9=$a10=$a11=$a12=$a13=$a14=$a15=$a16=$in1='';
@@ -85,8 +89,8 @@ $a12=$num_rows["name4"];
 $a13=$num_rows["accountnum4"];
 $a14=$num_rows["amount4"];
 $a15=$num_rows["taposna"];
+$a16=$num_rows["contact"];
 }
-
 //##########################################################################
 
 //##########################################################################
@@ -123,8 +127,8 @@ echo "Error Num ". $result . " was encountered!";
 }
 //##########################################################################
 
-
 $n1=date('h:i a');
+//##########################################################################
 //========================
 $myfile = fopen("../tests/teller2.txt", "w") or die("Unable to open file!");
 if($b==null||$b==''){
@@ -157,6 +161,8 @@ else
 // close connection
 ftp_close($ftp_conn);
 }
+
+
 ?>
 
 
@@ -176,7 +182,7 @@ ftp_close($ftp_conn);
      </style>
  </head>   
 <body onload="play(); deleteRow();">
-<center><img src="../img/3.png" class="disp1">
+  <center><img src="../img/3.png" class="disp1">
 </center>
    <center>
        <br><br>
@@ -230,10 +236,10 @@ ftp_close($ftp_conn);
         <form action="<?php $_SERVER["PHP_SELF"];?>" method="POST">
             <button type="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
-    
- <form action="logout.php" method="POST">
+     <form action="logout2.php" method="POST">
             <button type="submit" name="get" class="paysub">Logout</button>
         </form>
+
     </center>
     
  <script type="text/javascript" src="jj.js"></script> 

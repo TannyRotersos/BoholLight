@@ -85,8 +85,7 @@ try {
     $printer -> setTextSize(1, 1);
     $printer -> text("\nPlease approach the teller when your number is called\n");
     $printer -> setTextSize(1, 1);
-    $printer -> text("--------------------------------");
-    $printer -> text("Inquire queues by texting BLCIQ to 09553559459 or view Queues online by visiting blci.000webhostapp.com");
+    $printer -> text("--------------------------------\nInquire queues:\nText BLCIQ to 09553559459 or \nvisit www.blci.000webhostapp.com\n");
     $printer -> cut();
     
     /* Close printer */
