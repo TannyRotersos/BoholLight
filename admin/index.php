@@ -24,7 +24,7 @@ mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
     <title></title>
     <meta charset="utf-8"/>
         <meta type="viewport" content="width=device=width, initial-scale=1.0">
-     <link rel="stylesheet" href="../style/style.css" type="text/css"/>
+     <link rel="stylesheet" href="../style/style3.css" type="text/css">
      <style type="text/css">
      	
      .disp1{
@@ -63,6 +63,7 @@ mysqli_query($link, "UPDATE users set stat=1 where userid='$userid';");
 h1{
 font-size: 40px;
 }
+
      </style>
 </head>
 <body>

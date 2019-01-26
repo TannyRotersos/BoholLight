@@ -58,11 +58,7 @@ session_destroy();
         <meta type="viewport" content="width=device=width, initial-scale=1.0">
        <link rel="stylesheet" href="../style/style.css" type="text/css"/>
 <style type="text/css">
- .disp1{
-    margin: 0%;
-    width: 75%;
-    height: 15%;
-}       
+    
 .paysubo{
   width: 40%;
   height:10%;
@@ -86,9 +82,7 @@ table{
      </head>
 <body onload="deleteRow()">
      
-   <center><img src="../img/3.png" class="disp1">
-</center>  
-   
+  
        <center>
     <table>
     <tr>

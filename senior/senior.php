@@ -5,18 +5,11 @@
     <meta charset="utf-8"/>
         <meta type="viewport" content="width=device=width, initial-scale=1.0">
         <link rel="stylesheet" href="../style/inputstyle.css" type="text/css"/>
-<style type="text/css">
-  .disp1{
-    margin: 0%;
-    width: 75%;
-    height: 15%;
-}
-</style>
+
 </head>     
 <body onload="hidelec(); hidwat();">
     
-   <center><img src="../img/3.png" class="disp1">
-</center>   
+ 
  <center>
     <div class="not">
     

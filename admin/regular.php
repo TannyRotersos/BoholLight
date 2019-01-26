@@ -63,12 +63,12 @@ th{
 
 		<form action="<?php $_SERVER["PHP_SELF"];?>" method="post" >
 			<select name="year" class="createe">
-			<option value="" disabled selected>Year</option>
+			<option value="" type="hidden" selected>Year</option>
   				<option value="2019">2019</option>
   				<option value="2018">2018</option>
 			</select>
 			<select name="month" class="createe">
-			<option value="" disabled selected>Month</option>
+			<option value="" type="hidden" selected>Month</option>
     			<option value='01'>January</option>
 			    <option value='02'>February</option>
 			    <option value='03'>March</option>
@@ -84,16 +84,16 @@ th{
     		</select> 
     		<select id="day_start" class="createe"
           name="day_start" /> 
-			<option value="" disabled selected>Day</option>
-			    <option>1</option>       
-			    <option>2</option>       
-			    <option>3</option>       
-			    <option>4</option>       
-			    <option>5</option>       
-			    <option>6</option>       
-			    <option>7</option>       
-			    <option>8</option>       
-			    <option>9</option>       
+			<option value="" type="hidden" selected>Day</option>
+			    <option>01</option>       
+			    <option>02</option>       
+			    <option>03</option>       
+			    <option>04</option>       
+			    <option>05</option>       
+			    <option>06</option>       
+			    <option>07</option>       
+			    <option>08</option>       
+			    <option>09</option>       
 			    <option>10</option>       
 			    <option>11</option>       
 			    <option>12</option>       
@@ -128,12 +128,15 @@ $user="root";
 $password="";
 $database="queuing";
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 
 $year=$_POST['year'];
 $month=$_POST['month'];
 $day=$_POST['day_start'];
 //where quenumber like '%$a%';
+
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
 $result=mysqli_query($link, "SELECT * FROM que1 where dtime like '%$year-$month-$day%';");
@@ -166,6 +169,8 @@ $r=$num_rows["teller"];
 
 
 }
+
+//====================
 }
 
 else{

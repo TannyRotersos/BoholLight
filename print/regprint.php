@@ -62,7 +62,7 @@ $r=$num_rows["dtime"];
 date_default_timezone_set("Asia/Hong_Kong");
 
 // Prints something like: Monday 8th of August 2005 03:12:46 PM
-$rr=date('l, F j, Y h:i a');
+$rr=date('l,F j,Y h:i a');
 
 
 /**
@@ -95,15 +95,14 @@ try {
     $printer -> setTextSize(1, 1);
     $printer -> setTextSize(1, 1);
     $printer -> text("$rr\n");
-    $printer -> text("<hr\>\n");
+    $printer -> text("--------------------------------");
     $printer -> text("Your Priority Number is\n");
     $printer -> setTextSize(4, 4);
     $printer -> text($b);
     $printer -> setTextSize(1, 1);
     $printer -> text("\nPlease approach the teller when your number is called\n");
     $printer -> setTextSize(1, 1);
-    $printer -> text("<hr\>\n");
-    $printer -> text("Inquire queues by texting BLCIQ to 09553559459 or view Queues online by visiting blci.000webhostapp.com");
+    $printer -> text("--------------------------------\nInquire queues:\nText BLCIQ to 09553559459 or \nvisit www.blci.000webhostapp.com\n\n\n\n");
     $printer -> cut();
     
     /* Close printer */

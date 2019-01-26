@@ -36,7 +36,8 @@
 	<div id="msg" style="color:#9D1A0A;font-size:18px;"></div><br>
 	<button id="submit" value="submit" class="paycreate">Submit</button>
 </form>
-<a href="index.php"><button class="paycreate">Back</button></a>
+
+<a href="index.php">Back</a>
 
 <script type="text/javascript">
 
