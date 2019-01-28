@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2019 at 08:37 AM
+-- Generation Time: Jan 28, 2019 at 03:29 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -29,13 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `accounts` (
-  `userid` varchar(15) NOT NULL,
-  `pass` varchar(15) NOT NULL,
+  `userid` varchar(50) NOT NULL,
+  `pass` varchar(60) NOT NULL,
   `link` varchar(50) NOT NULL,
-  `accountype` varchar(15) NOT NULL,
-  `stat` int(2) NOT NULL,
-  `fname` varchar(25) NOT NULL,
-  `lname` varchar(25) NOT NULL,
+  `accountype` varchar(6) NOT NULL,
+  `stat` varchar(15) NOT NULL,
+  `fname` varchar(50) NOT NULL,
+  `lname` varchar(50) NOT NULL,
   `age` int(3) NOT NULL,
   `address` varchar(50) NOT NULL,
   `contact` bigint(15) NOT NULL
@@ -46,8 +46,11 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`userid`, `pass`, `link`, `accountype`, `stat`, `fname`, `lname`, `age`, `address`, `contact`) VALUES
-('tanny', 'tan', 'teller/teller1.php', '', 0, 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
-('teller1', '34', 'teller/teller1.php', '', 0, 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 43434);
+('tanny', '$2y$10$84Dgw7T.hjLyWEdvR1uwcuTkGj4dy4u.2S9OpT9qmWfV8UWb3MlQa', 'admin/index.php', 'admin', 'online', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
+('teller1', '$2y$10$bT04uB1GxIR3Wjg8FgxPIOFTeQrT8uENuy3x2L7yEY4Nr6zQgO6a.', 'teller/teller.php', 'teller', 'offline', 'Nin', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
+('special', '$2y$10$Bu0AIJsoVPFOQurPLRbrgeelAH80grg61pqVnPiH.Ejw.4CZAFDBO', 'teller/teller4.php', 'teller', 'offline', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
+('ninyayow', '$2y$10$BsYBmt3v04gsZzab1hEh7.hY/IOvcQcZS0yfOfzzVJUs1uiN/o8Ue', 'teller/teller4.php', 'teller', 'offline', 'NiÃ±a Mae', 'Pacatang', 20, 'San Miguel', 9123941655),
+('teller2', '$2y$10$gQXQ3axDI531Lw7hyOxCSeEsR5JYH0dItmqjZXWGWoePhMc.ZiNl2', 'teller/teller.php', 'admin', 'offline', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655);
 
 -- --------------------------------------------------------
 
@@ -123,64 +126,6 @@ CREATE TABLE `que1` (
   `teller` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `que1`
---
-
-INSERT INTO `que1` (`quenumber`, `name`, `accountnum`, `amount`, `name2`, `accountnum2`, `amount2`, `name3`, `accountnum3`, `amount3`, `name4`, `accountnum4`, `amount4`, `taposna`, `contact`, `dtime`, `teller`) VALUES
-('BL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-12 08:21:21', 1),
-('BL02', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:01:47', 1),
-('BL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-13 23:41:21', 1),
-('BL02', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:01:47', 1),
-('BL03', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-15 01:40:17', 1),
-('BL04', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:03:51', 1),
-('BL05', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:50:28', 2),
-('BL06', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:52:32', 2),
-('BL07', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:53:30', 2),
-('BL08', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-14 09:45:54', 1),
-('BL09', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:57:54', 1),
-('BL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-15 01:24:23', 1),
-('BL02', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:01:47', 1),
-('BL03', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-15 01:40:17', 1),
-('BL04', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:03:51', 1),
-('BL05', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:50:28', 2),
-('BL06', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:52:32', 2),
-('BL07', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:53:30', 2),
-('BL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-17 07:07:21', 1),
-('BL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 01:59:16', 1),
-('BL02', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:01:47', 1),
-('BL03', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:01:58', 1),
-('BL04', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:03:51', 1),
-('BL05', '', '', '', '', '', '', '', '', '', '', '', '', 1, '09123941655', '2019-01-22 02:50:28', 2),
-('BL06', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:52:32', 2),
-('BL07', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:53:30', 2),
-('BL08', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:48:37', 1),
-('BL09', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 02:57:54', 1),
-('BL10', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 03:10:41', 1),
-('BL11', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:39:48', 1),
-('BL12', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:39:48', 1),
-('BL13', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:39:48', 1),
-('BL14', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 04:01:15', 1),
-('BL15', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:50:28', 2),
-('BL16', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:52:32', 2),
-('BL17', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:53:30', 2),
-('BL18', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 07:57:26', 1),
-('BL19', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 07:58:11', 1),
-('BL20', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 07:59:11', 1),
-('BL21', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:39:48', 1),
-('BL22', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:42:36', 1),
-('BL23', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:42:36', 1),
-('BL24', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 08:37:53', 1),
-('BL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:39:48', 1),
-('BL02', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:42:36', 1),
-('BL03', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:43:32', 1),
-('BL04', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:48:30', 1),
-('BL05', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:50:28', 2),
-('BL06', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:52:32', 2),
-('BL07', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:53:30', 2),
-('BL08', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-22 02:54:02', 1),
-('BL09', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '2019-01-22 08:52:59', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -234,43 +179,27 @@ CREATE TABLE `senior1` (
   `teller` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `senior1`
---
-
-INSERT INTO `senior1` (`quenumber`, `name`, `accountnum`, `amount`, `name2`, `accountnum2`, `amount2`, `name3`, `accountnum3`, `amount3`, `name4`, `accountnum4`, `amount4`, `taposna`, `contact`, `dtime`, `teller`) VALUES
-('SL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-15 01:41:44', 0),
-('SL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 03:11:46', 0),
-('SL02', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 08:05:27', 0),
-('SL03', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-18 08:37:38', 0),
-('SL04', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '2019-01-18 03:09:03', 0),
-('SL05', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '2019-01-18 03:09:07', 0),
-('SL06', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '2019-01-18 03:09:13', 0),
-('SL07', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '2019-01-18 08:05:20', 0);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `tellereg`
 --
 
-CREATE TABLE `users` (
-  `userid` varchar(50) NOT NULL,
-  `pass` varchar(15) NOT NULL,
-  `link` varchar(30) NOT NULL,
-  `stat` int(2) NOT NULL
+CREATE TABLE `tellereg` (
+  `num` int(11) NOT NULL,
+  `serialnum` varchar(15) NOT NULL,
+  `id` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `tellereg`
 --
 
-INSERT INTO `users` (`userid`, `pass`, `link`, `stat`) VALUES
-('teller1', 'tan', 'teller/teller1.php', 0),
-('teller2', '12345', 'teller/teller2.php', 0),
-('teller3', '12345', 'teller/teller3.php', 0),
-('teller4', '12345', 'teller/teller4.php', 0),
-('admin', '12345', 'admin/index.php', 0);
+INSERT INTO `tellereg` (`num`, `serialnum`, `id`) VALUES
+(1, '3A17-D985', 1),
+(2, '', 2),
+(3, '', 3),
+(4, '', 4);
 
 --
 -- Indexes for dumped tables
@@ -289,6 +218,12 @@ ALTER TABLE `senior`
   ADD PRIMARY KEY (`quenumber`);
 
 --
+-- Indexes for table `tellereg`
+--
+ALTER TABLE `tellereg`
+  ADD PRIMARY KEY (`num`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -303,6 +238,12 @@ ALTER TABLE `que`
 --
 ALTER TABLE `senior`
   MODIFY `quenumber` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tellereg`
+--
+ALTER TABLE `tellereg`
+  MODIFY `num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
