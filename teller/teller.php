@@ -1,27 +1,51 @@
 <?php
+
 session_start();
 if(!$_SESSION["iD"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
 }
 
-date_default_timezone_set("Asia/Hong_Kong");
 
+date_default_timezone_set("Asia/Hong_Kong");
 $hostname="localhost";
 $user="root";
 $password="";
 $database="queuing";
+
 $userid=$_SESSION["iD"];
 $_SESSION["user"]=$userid;
-
-$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc='';
+$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc=$tellerid='';
 
 
 
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-mysqli_query($link, "UPDATE users set stat='online' where userid='$userid';");
+mysqli_query($link, "UPDATE accounts set stat='online' where userid='$userid';");
+
+//====================================Getting Serial Number
+function GetVolumeLabel($drive) {
+if (preg_match('#Volume Serial Number is (.*)\n#i', shell_exec('dir '.$drive.':'), $m)) {
+$volname = ' ('.$m[1].')';
+} else {
+$volname = '';
+}
+return $volname;
+}
+$serial = trim(str_replace("(","",str_replace(")","",GetVolumeLabel("c"))));
+//================================================================================
+
+
+$result=mysqli_query($link, "SELECT * from tellereg where serialnum='$serial'");
+for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
+$num=$num_rows["num"];
+$serialnumber=$num_rows["serialnum"];
+$tellerid=$num_rows["id"];
+}
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -31,12 +55,13 @@ $result=mysqli_query($link, "SELECT MIN(quenumber) as 'new' FROM que where tapos
 for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 $a=$num_rows["new"];
 }
+
 if($a!==null){
 //===============================================================
-mysqli_query($link, "UPDATE que SET taposna=1,teller=2 where quenumber=$a;");
+mysqli_query($link, "UPDATE que SET taposna=$tellerid,teller=$tellerid where quenumber='$a';");
 //===============================================================
 $result1=mysqli_query($link, "SELECT * FROM que where quenumber=$a");
-         mysqli_query($link, "UPDATE que1 SET taposna=1,teller=2 where quenumber like '%$a%';");
+         mysqli_query($link, "UPDATE que1 SET taposna=$tellerid,teller=$tellerid where quenumber like '%$a%';");
 for($i=0; $i<$num_rows=mysqli_fetch_array($result1);$i++){
 $b=$num_rows["quenumber"];
 $d=$num_rows["name"];
@@ -58,11 +83,12 @@ $p=$num_rows["taposna"];
 $q=$num_rows["contact"];
 }
 //===============================================================
-mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=2");
+mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=$tellerid");
 //===============================================================
+
 }
 else{
-  mysqli_query($link, "UPDATE display SET quenumber='' where teller=2");
+  mysqli_query($link, "UPDATE display SET quenumber='' where teller=$tellerid");
 
 }
 //#############################Here starts the sms notification
@@ -89,8 +115,8 @@ $a12=$num_rows["name4"];
 $a13=$num_rows["accountnum4"];
 $a14=$num_rows["amount4"];
 $a15=$num_rows["taposna"];
-$a16=$num_rows["contact"];
 }
+
 //##########################################################################
 
 //##########################################################################
@@ -127,10 +153,10 @@ echo "Error Num ". $result . " was encountered!";
 }
 //##########################################################################
 
+
 $n1=date('h:i a');
-//##########################################################################
 //========================
-$myfile = fopen("../tests/teller2.txt", "w") or die("Unable to open file!");
+$myfile = fopen("../tests/teller".$tellerid.".txt", "w") or die("Unable to open file!");
 if($b==null||$b==''){
   $txt = "--";
 }
@@ -140,29 +166,11 @@ else{
 fwrite($myfile, $txt);
 fclose($myfile);
 //========================
-// connect and login to FTP server
-$destination_path = "public_html/"; 
-$ftp_server = "files.000webhost.com";
-$ftp_conn = ftp_connect($ftp_server) or die("Could not connect to $ftp_server");
-$login = ftp_login($ftp_conn, "blci", "intrudertanny");
 
-$file1 = "../tests/teller2.txt";
-$destination_file1 = $destination_path."serverfile2.txt";
 
-// upload file
-if (ftp_put($ftp_conn, $destination_file1, $file1, FTP_ASCII))
-  {
-  echo "";
-  }
-else
-  {
-  echo "";
-  }
-// close connection
-ftp_close($ftp_conn);
+$_SESSION["tellerid"]=$tellerid;
+
 }
-
-
 ?>
 
 
@@ -172,7 +180,7 @@ ftp_close($ftp_conn);
     <meta charset="utf-8"/>
         <meta type="viewport" content="width=device=width, initial-scale=1.0">
             <link rel="stylesheet" href="../style/style1.css" type="text/css"/>
- <style type="text/css">
+<style type="text/css">
       
      .disp1{
     margin: 0%;
@@ -180,7 +188,7 @@ ftp_close($ftp_conn);
     height: 19%;
 }
      </style>
- </head>   
+</head>    
 <body onload="play(); deleteRow();">
   <center><img src="../img/3.png" class="disp1">
 </center>
@@ -236,14 +244,14 @@ ftp_close($ftp_conn);
         <form action="<?php $_SERVER["PHP_SELF"];?>" method="POST">
             <button type="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
-     <form action="logout2.php" method="POST">
+    
+    <form action="logout.php" method="POST">
             <button type="submit" name="get" class="paysub">Logout</button>
         </form>
-
-    </center>
     
  <script type="text/javascript" src="jj.js"></script> 
 <script>
+ 
  //==============================================================
  function deleteRow()  
 {   

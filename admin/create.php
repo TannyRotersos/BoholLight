@@ -34,7 +34,7 @@ $_SESSION["id"] = $userid;
 	<input type="text" name="cnum" id="cnum" class="create" placeholder="Contact Number"required><br>
 
 	<select name="actype" id="actype" class="create" placeholder="Account Type">
-		<option value="teller/teller1.php">Regular Teller Account</option>
+		<option value="teller/teller.php">Regular Teller Account</option>
 		<option value="teller/teller4.php">Special Lane Teller Account</option>
 		<option value="admin/index.php">Admin Account</option>
 		</select></div>
