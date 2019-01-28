@@ -17,39 +17,19 @@ $_SESSION["id"] = $userid;
 <style type="text/css">
 .t1{
 	background-color: #F75E29;  
+	font-size: 15px;
 }
-
-.createe{
-	width: 10%;
-	height: 50px;
-	font-family: arial;
-	font-size: 23px;
-	border: 2px solid orangered;
-	margin-top: 1%;
-}
-
-.paycreate{
-	width: 10%;
-	height:50px;
-	background-color: orangered;
-	color: white;
-	font-family: arial;
-	font-size: 30px;
-	margin-top: 1%;
-	border-radius: 3px;
-}
-
-
 td{
 	width:220px;
 	padding: 5px;
 	border-radius: 2px;
 	background-color: #FAD1C3;  
+	font-size: 13px;
 }
 table{
 	font-family:'Century Gothic';
 	color: #515355 ;
-	font-size: 18px;
+	font-size: 15px;
 	padding: 0px;
 	width: 100%;
 	border-spacing: 1px;
@@ -58,7 +38,7 @@ table{
 th{
 	width:220px;
 	 border-radius: 2px;
-	 font-size: 20px;
+	 font-size: 15px;
 	 color: white;
 }
 .tds{

@@ -105,7 +105,7 @@ $r=$num_rows["teller"];
 
 </table>
 
-<br><a href="index.php"><input type="button" class="paysub"  value="Back to Menu"></a>
+<br><a href="index.php"><input type="button" class="paysub"  value="Back"></a>
 </center>
 </body>
 	</html>

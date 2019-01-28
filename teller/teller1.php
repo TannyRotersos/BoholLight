@@ -163,7 +163,7 @@ else
   echo "";
   }
 // close connection
-ftp_close($ftp_conn);
+//gi modify ftp_close($ftp_conn);
 
 
 

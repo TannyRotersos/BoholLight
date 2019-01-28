@@ -157,7 +157,7 @@ else
   echo "";
   }
 // close connection
-ftp_close($ftp_conn);
+//ftp_close($ftp_conn);
 }
 
 
