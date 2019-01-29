@@ -3,6 +3,7 @@ session_start();
 if(!$_SESSION["iD"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
+    exit;
 }
 
 date_default_timezone_set("Asia/Hong_Kong");

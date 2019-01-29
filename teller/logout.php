@@ -2,8 +2,9 @@
 session_start();
 
 $tellerid=$_SESSION["tellerid"];
-$tellername=$_SESSION["iD"];
+$tellername=$_SESSION["user"];
 
+$_SESSION["user"]=$tellername;
 $hostname="localhost";
 $user="root";
 $password="";

@@ -3,10 +3,12 @@ session_start();
 if(!$_SESSION["iD"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
+    exit;
 }
 
 $userid=$_SESSION["iD"];
 $_SESSION["id"] = $userid;
+$_SESSION["user"] = $userid;
 
 $hostname="localhost";
 $user="root";

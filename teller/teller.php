@@ -4,6 +4,7 @@ session_start();
 if(!$_SESSION["iD"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
+    exit;
 }
 
 
