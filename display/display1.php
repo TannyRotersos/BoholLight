@@ -24,7 +24,7 @@ else{
 	echo "$a";
 
 }
-
+/*
 // connect and login to FTP server
 $destination_path = "public_html/"; 
 $ftp_server = "files.000webhost.com";
@@ -44,7 +44,7 @@ else
   echo "";
   }
 //close connection
-ftp_close($ftp_conn);
+ftp_close($ftp_conn);*/
 
 ?>
 

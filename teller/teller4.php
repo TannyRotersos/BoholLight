@@ -13,14 +13,44 @@ $password="";
 $database="queuing";
 $userid=$_SESSION["iD"];
 $_SESSION["user"]=$userid;
-$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r='';
 
-
+$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc=$tellerid=$val='';
+$message='';
 
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
-mysqli_query($link, "UPDATE users set stat='online' where userid='$userid';");
+mysqli_query($link, "UPDATE accounts set stat='online' where userid='$userid';");
+
+//====================================Getting Serial Number
+function GetVolumeLabel($drive) {
+if (preg_match('#Volume Serial Number is (.*)\n#i', shell_exec('dir '.$drive.':'), $m)) {
+$volname = ' ('.$m[1].')';
+} else {
+$volname = '';
+}
+return $volname;
+}
+$serial = trim(str_replace("(","",str_replace(")","",GetVolumeLabel("c"))));
+//================================================================================
+
+
+$result=mysqli_query($link, "SELECT * from tellereg where serialnum='$serial' and id=4");
+for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
+$num=$num_rows["num"];
+$serialnumber=$num_rows["serialnum"];
+$tellerid=$num_rows["id"];
+}
+
+if($tellerid==""){
+  $message="This computer is not registered as teller. Please contact administrator.";
+  $val="false";
+}
+else{
+  $val="true";
+}
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -54,12 +84,12 @@ $q=$num_rows["contact"];
 }
 //===============================================================
 
-mysqli_query($link, "UPDATE display SET quenumber='$b' where teller=4");
+mysqli_query($link, "UPDATE display SET quenumber='$b' where teller=$tellerid");
 
 //===============================================================
 }
 else{
-  mysqli_query($link, "UPDATE display SET quenumber='' where teller=4");
+  mysqli_query($link, "UPDATE display SET quenumber='' where teller=$tellerid");
 
 }
 
@@ -178,9 +208,13 @@ else
      </style>
 </head>    
 <body onload="play(); deleteRow();">
-</center>
+
    <center>
+     <div style="color:#9D1A0A;font-size:26px;"><br><?php echo $message;?></div>
+ 
        <br><br>
+   
+        <hr width="80%" size="5px" align="center" color="orangered">
         <table class="table1" id="tellertab" >
         <tr>
           <td colspan="3"><center><o>QUEUE NUMBER &nbsp;&nbsp;</o><n><b><?php echo "$b";?></b></n></center></td>
@@ -224,19 +258,30 @@ else
               
  
         <div id="links"></div>
-       
+        <hr width="80%" size="5px" align="center" color="orangered">
         
         <form action="<?php $_SERVER["PHP_SELF"];?>" method="POST">
-            <button type="submit" name="get" style="width: 20%; height: 50px;background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%" value="<?php echo "$e";?>" >Get Queue</button>
+            <button type="submit" id="submit" name="get" style="width: 20%; height: 50px;background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
     
- <form action="logout4.php" method="POST">
-            <button type="submit" name="get" style="width: 20%; height: 50px; background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%">Logout</button>
+ <form action="logout.php" method="POST">
+            <button  type="submit" name="get" style="width: 20%; height: 50px; background-color: orangered;color: white;font-family: arial;font-size: 30px;border: 0px;margin-top: 3%;border-radius: 3px; margin-left: 3.5%">Logout</button>
         </form>
     </center>
     
  <script type="text/javascript" src="jj.js"></script> 
 <script>
+
+  var compvalid="<?php echo "$val";?>"
+
+if(compvalid=="true")
+{
+  document.getElementById("submit").style.visibility = "visible";
+}
+else
+{
+  document.getElementById("submit").style.visibility = "hidden";
+}
  //==============================================================
  function deleteRow()  
 {   

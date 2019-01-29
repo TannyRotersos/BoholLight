@@ -15,8 +15,8 @@ $database="queuing";
 
 $userid=$_SESSION["iD"];
 $_SESSION["user"]=$userid;
-$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc=$tellerid='';
-
+$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc=$tellerid=$val='';
+$message='';
 
 
 
@@ -44,7 +44,13 @@ $serialnumber=$num_rows["serialnum"];
 $tellerid=$num_rows["id"];
 }
 
-
+if($tellerid==""){
+  $message="This computer is not registered as teller. Please contact administrator.";
+  $val="false";
+}
+else{
+  $val="true";
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -180,6 +186,7 @@ $_SESSION["tellerid"]=$tellerid;
     <meta charset="utf-8"/>
         <meta type="viewport" content="width=device=width, initial-scale=1.0">
             <link rel="stylesheet" href="../style/style1.css" type="text/css"/>
+            
 <style type="text/css">
       
      .disp1{
@@ -190,7 +197,8 @@ $_SESSION["tellerid"]=$tellerid;
      </style>
 </head>    
 <body onload="play(); deleteRow();">
-  <center><img src="../img/3.png" class="disp1">
+  <center>
+    <div style="color:#9D1A0A;font-size:26px;"><br></i><?php echo $message;?></div>
 </center>
    <center>
        <br><br>
@@ -242,16 +250,25 @@ $_SESSION["tellerid"]=$tellerid;
         <hr width="80%" size="5px" align="center" color="orangered">
         
         <form action="<?php $_SERVER["PHP_SELF"];?>" method="POST">
-            <button type="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
+            <button type="submit" id="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
     
     <form action="logout.php" method="POST">
-            <button type="submit" name="get" class="paysub">Logout</button>
+            <button type="submit"  name="get" class="paysub">Logout</button>
         </form>
     
  <script type="text/javascript" src="jj.js"></script> 
 <script>
- 
+ var compvalid="<?php echo "$val";?>"
+
+if(compvalid=="true")
+{
+  document.getElementById("submit").style.visibility = "visible";
+}
+else
+{
+  document.getElementById("submit").style.visibility = "hidden";
+}
  //==============================================================
  function deleteRow()  
 {   
