@@ -6,6 +6,9 @@
 body{
     background-image: url(../img/2.jpg);
     margin: 0%;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+
 }
 .disp1{
     margin: 0%;
@@ -26,7 +29,7 @@ body{
     <center><img src="../img/3.png" class="disp1">
 </center>
     <video id="idle_video" class="vid" autoplay onended="onVideoEnded();"></video>
-<iframe src="display.php" style="float: right;position: relative;width:44.5%; height:79%;border: 0px;margin: 0%;margin-top: 0.9%;"></iframe>
+<iframe src="display.php" style="float: right;position: relative;width:44.5%; height:90%;border: 0px;margin: 0%;margin-top: 0.9%; overflow: hidden;"></iframe>
 
 
     <script>

@@ -1,3 +1,6 @@
+::-webkit-scrollbar { 
+    display: none; 
+}
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -15,6 +18,9 @@ body{
     background-image: url('../img/bg.jpg');
     background-size: 100%;
     background-position:  center;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x:hidden;
 }
 
 x{

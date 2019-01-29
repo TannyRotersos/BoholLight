@@ -7,6 +7,7 @@
 body{
   background-color: rgba(195, 246, 250,0.6);
   padding: 0%;
+  
 }
 .title{
   font-size: 50px;

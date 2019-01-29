@@ -1,13 +1,12 @@
 <?php
-session_start();
-if(!$_SESSION["iD"]){
-    //Do not show protected data, redirect to login...
-    header("Location: ../user.php");
-}
+		session_start();
+		if(!$_SESSION["iD"]){
+		    header("Location: ../user.php");
+		}
 
-$userid=$_SESSION["iD"];
-$_SESSION["id"] = $userid;
-?>
+		$userid=$_SESSION["iD"];
+		$_SESSION["id"] = $userid;
+		?>
 
 
 <!DOCTYPE html>
@@ -15,8 +14,8 @@ $_SESSION["id"] = $userid;
 <head>
 	<title>Create New Account</title>
 	<meta charset="utf-8"/>
-        <meta type="viewport" content="width=device=width, initial-scale=1.0">
-     <link rel="stylesheet" href="../style/style.css" type="text/css"/>
+    <meta type="viewport" content="width=device=width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css" type="text/css"/>
 
 </head>
 <body>
@@ -24,7 +23,7 @@ $_SESSION["id"] = $userid;
 	<v>CREATE ACCOUNT </v>
 <br>
 <center>
-	<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>" >
+<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>" >
 	<br>
 	<div class="create1">
 	<input type="text" name="fname" id="fname" class="create" placeholder="Name" required><br>
@@ -37,13 +36,13 @@ $_SESSION["id"] = $userid;
 		<option value="teller/teller.php">Regular Teller Account</option>
 		<option value="teller/teller4.php">Special Lane Teller Account</option>
 		<option value="admin/index.php">Admin Account</option>
-		</select></div>
+	</select></div>
 
-		<div class="create2">
+	<div class="create2">
 	<input type="text" name="username" id="user" class="create"placeholder="Username" required><br>
 		
 	
-<input type="password" name="newpass" id="newpass"class="create" placeholder="Password" required><br>
+	<input type="password" name="newpass" id="newpass"class="create" placeholder="Password" required><br>
 	<input type="password" name="cnewpass" id="cnewpass" class="create" placeholder="Confirm Password"onkeyup="validation()" require><br>
 	<div id="msg" style="color:#9D1A0A;font-size:18px;"></div><br>
 	<button id="submit" value="submit" class="paycreate">Submit</button>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2019 at 03:29 PM
+-- Generation Time: Jan 29, 2019 at 09:14 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL,
   `userid` varchar(50) NOT NULL,
   `pass` varchar(60) NOT NULL,
   `link` varchar(50) NOT NULL,
@@ -45,12 +46,12 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`userid`, `pass`, `link`, `accountype`, `stat`, `fname`, `lname`, `age`, `address`, `contact`) VALUES
-('tanny', '$2y$10$84Dgw7T.hjLyWEdvR1uwcuTkGj4dy4u.2S9OpT9qmWfV8UWb3MlQa', 'admin/index.php', 'admin', 'online', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
-('teller1', '$2y$10$bT04uB1GxIR3Wjg8FgxPIOFTeQrT8uENuy3x2L7yEY4Nr6zQgO6a.', 'teller/teller.php', 'teller', 'offline', 'Nin', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
-('special', '$2y$10$Bu0AIJsoVPFOQurPLRbrgeelAH80grg61pqVnPiH.Ejw.4CZAFDBO', 'teller/teller4.php', 'teller', 'offline', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
-('ninyayow', '$2y$10$BsYBmt3v04gsZzab1hEh7.hY/IOvcQcZS0yfOfzzVJUs1uiN/o8Ue', 'teller/teller4.php', 'teller', 'offline', 'NiÃ±a Mae', 'Pacatang', 20, 'San Miguel', 9123941655),
-('teller2', '$2y$10$gQXQ3axDI531Lw7hyOxCSeEsR5JYH0dItmqjZXWGWoePhMc.ZiNl2', 'teller/teller.php', 'admin', 'offline', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655);
+INSERT INTO `accounts` (`id`, `userid`, `pass`, `link`, `accountype`, `stat`, `fname`, `lname`, `age`, `address`, `contact`) VALUES
+(1, 'tanny', '$2y$10$84Dgw7T.hjLyWEdvR1uwcuTkGj4dy4u.2S9OpT9qmWfV8UWb3MlQa', 'admin/index.php', 'admin', 'offline', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
+(2, 'teller1', '$2y$10$bT04uB1GxIR3Wjg8FgxPIOFTeQrT8uENuy3x2L7yEY4Nr6zQgO6a.', 'teller/teller.php', 'teller', 'offline', 'Nin', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
+(3, 'special', '$2y$10$Bu0AIJsoVPFOQurPLRbrgeelAH80grg61pqVnPiH.Ejw.4CZAFDBO', 'teller/teller4.php', 'teller', 'offline', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655),
+(4, 'ninyayow', '$2y$10$BsYBmt3v04gsZzab1hEh7.hY/IOvcQcZS0yfOfzzVJUs1uiN/o8Ue', 'teller/teller4.php', 'teller', 'offline', 'NiÃ±a Mae', 'Pacatang', 20, 'San Miguel', 9123941655),
+(5, 'teller2', '$2y$10$gQXQ3axDI531Lw7hyOxCSeEsR5JYH0dItmqjZXWGWoePhMc.ZiNl2', 'teller/teller.php', 'admin', 'offline', 'Tanny', 'Rotersos', 21, 'Basdacu, Loon, Bohol', 9123941655);
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,7 @@ CREATE TABLE `display` (
 --
 
 INSERT INTO `display` (`quenumber`, `teller`) VALUES
-('', 1),
+('BL02', 1),
 ('', 2),
 ('', 3),
 ('', 4);
@@ -100,6 +101,14 @@ CREATE TABLE `que` (
   `teller` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `que`
+--
+
+INSERT INTO `que` (`quenumber`, `name`, `accountnum`, `amount`, `name2`, `accountnum2`, `amount2`, `priority`, `taposna`, `contact`, `name3`, `accountnum3`, `amount3`, `name4`, `accountnum4`, `amount4`, `dtime`, `teller`) VALUES
+(1, '', '', '', '', '', '', 'BL01', 1, '', '', '', '', '', '', '', '2019-01-29 01:04:26', 1),
+(2, '', '', '', '', '', '', 'BL02', 1, '', '', '', '', '', '', '', '2019-01-29 01:14:34', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +134,14 @@ CREATE TABLE `que1` (
   `dtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `teller` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `que1`
+--
+
+INSERT INTO `que1` (`quenumber`, `name`, `accountnum`, `amount`, `name2`, `accountnum2`, `amount2`, `name3`, `accountnum3`, `amount3`, `name4`, `accountnum4`, `amount4`, `taposna`, `contact`, `dtime`, `teller`) VALUES
+('BL01', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-29 01:04:26', 1),
+('BL02', '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '2019-01-29 01:14:34', 1);
 
 -- --------------------------------------------------------
 
@@ -206,6 +223,12 @@ INSERT INTO `tellereg` (`num`, `serialnum`, `id`) VALUES
 --
 
 --
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `que`
 --
 ALTER TABLE `que`
@@ -228,10 +251,16 @@ ALTER TABLE `tellereg`
 --
 
 --
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `que`
 --
 ALTER TABLE `que`
-  MODIFY `quenumber` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `quenumber` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `senior`
