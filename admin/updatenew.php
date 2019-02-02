@@ -1,11 +1,11 @@
 <?php
 session_start();
-if(!$_SESSION["iD"]){
+if(!$_SESSION["username"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
 }
 
-$userid=$_SESSION["iD"];
+$userid=$_SESSION["username"];
 $_SESSION["id"] = $userid;
 
 

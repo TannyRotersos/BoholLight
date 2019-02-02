@@ -24,6 +24,7 @@ if($yesterday<$today){
 mysqli_query($link, "UPDATE display SET quenumber=''");
 mysqli_query($link, "TRUNCATE table que;");
 mysqli_query($link, "TRUNCATE table senior;");
+mysqli_query($link, "UPDATE accounts set stat='offline';");
 }
 
 ?>

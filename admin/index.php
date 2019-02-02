@@ -1,12 +1,12 @@
 <?php
 session_start();
-if(!$_SESSION["iD"]){
+if(!$_SESSION["username"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
     exit;
 }
 
-$userid=$_SESSION["iD"];
+$userid=$_SESSION["username"];
 $_SESSION["id"] = $userid;
 $_SESSION["user"] = $userid;
 
@@ -18,7 +18,7 @@ $database="queuing";
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
 mysqli_query($link, "UPDATE accounts set stat='online' where userid='$userid';");
-
+mysqli_query($link, "UPDATE accountreg SET userid='$userid',stat='online' where teller=5;");
 ?>
 
 <html>

@@ -1,10 +1,11 @@
 <?php
 
 session_start();
-if(!$_SESSION["iD"]){
+
+if(!isset($_SESSION["username"])){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
-    exit;
+    
 }
 
 
@@ -14,44 +15,18 @@ $user="root";
 $password="";
 $database="queuing";
 
-$userid=$_SESSION["iD"];
+$userid=$_SESSION["username"];
 $_SESSION["user"]=$userid;
-$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc=$tellerid=$val='';
+$a=$b=$c=$d=$e=$f=$g=$h=$in=$j=$k=$l=$m=$n=$o=$p=$q=$r=$aa=$bb=$cc=$val='';
 $message='';
-
+$_SESSION["tellerid"]=2;
 
 
 $link=mysqli_connect($hostname,$user,$password) or die ("Error Connection");
 mysqli_select_db($link, $database) or die ("Error creating database");
 mysqli_query($link, "UPDATE accounts set stat='online' where userid='$userid';");
+mysqli_query($link, "UPDATE accountreg SET userid='$userid',stat='online' where teller=2;");
 
-//====================================Getting Serial Number
-function GetVolumeLabel($drive) {
-if (preg_match('#Volume Serial Number is (.*)\n#i', shell_exec('dir '.$drive.':'), $m)) {
-$volname = ' ('.$m[1].')';
-} else {
-$volname = '';
-}
-return $volname;
-}
-$serial = trim(str_replace("(","",str_replace(")","",GetVolumeLabel("c"))));
-//================================================================================
-
-
-$result=mysqli_query($link, "SELECT * from tellereg where serialnum='$serial'");
-for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
-$num=$num_rows["num"];
-$serialnumber=$num_rows["serialnum"];
-$tellerid=$num_rows["id"];
-}
-
-if($tellerid==""){
-  $message="This computer is not registered as teller. Please contact administrator.";
-  $val="false";
-}
-else{
-  $val="true";
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -65,10 +40,10 @@ $a=$num_rows["new"];
 
 if($a!==null){
 //===============================================================
-mysqli_query($link, "UPDATE que SET taposna=$tellerid,teller=$tellerid where quenumber='$a';");
+mysqli_query($link, "UPDATE que SET taposna=1,teller='2', user='$userid' where quenumber='$a';");
 //===============================================================
 $result1=mysqli_query($link, "SELECT * FROM que where quenumber=$a");
-         mysqli_query($link, "UPDATE que1 SET taposna=$tellerid,teller=$tellerid where quenumber like '%$a%';");
+         mysqli_query($link, "UPDATE que1 SET taposna=1,teller='2', user='$userid' where quenumber like '%$a%';");
 for($i=0; $i<$num_rows=mysqli_fetch_array($result1);$i++){
 $b=$num_rows["quenumber"];
 $d=$num_rows["name"];
@@ -90,12 +65,13 @@ $p=$num_rows["taposna"];
 $q=$num_rows["contact"];
 }
 //===============================================================
-mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=$tellerid");
+mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=2");
 //===============================================================
+
 
 }
 else{
-  mysqli_query($link, "UPDATE display SET quenumber='' where teller=$tellerid");
+  mysqli_query($link, "UPDATE display SET quenumber='' where teller=2");
 
 }
 //#############################Here starts the sms notification
@@ -163,7 +139,7 @@ echo "Error Num ". $result . " was encountered!";
 
 $n1=date('h:i a');
 //========================
-$myfile = fopen("../tests/teller".$tellerid.".txt", "w") or die("Unable to open file!");
+$myfile = fopen("../tests/teller2.txt", "w") or die("Unable to open file!");
 if($b==null||$b==''){
   $txt = "--";
 }
@@ -171,11 +147,8 @@ else{
   $txt = "$aa ($n1)";
 }
 fwrite($myfile, $txt);
-fclose($myfile);
+
 //========================
-
-
-$_SESSION["tellerid"]=$tellerid;
 
 }
 ?>
@@ -250,26 +223,17 @@ $_SESSION["tellerid"]=$tellerid;
        
         <hr width="80%" size="5px" align="center" color="orangered">
         
-        <form action="<?php $_SERVER["PHP_SELF"];?>" method="POST">
+       <form action="<?php $_SERVER["PHP_SELF"];?>" method="POST">
             <button type="submit" id="submit" name="get" class="paysub" value="<?php echo "$e";?>" >Get Queue</button>
         </form>
     
     <form action="logout.php" method="POST">
             <button type="submit"  name="get" class="paysub">Logout</button>
         </form>
-    
+     <iframe src="../tests/upload.php" style="float: left;position: relative;width:0%; height:0%;border: 0px; overflow: hidden;"></iframe>
  <script type="text/javascript" src="jj.js"></script> 
 <script>
- var compvalid="<?php echo "$val";?>"
 
-if(compvalid=="true")
-{
-  document.getElementById("submit").style.visibility = "visible";
-}
-else
-{
-  document.getElementById("submit").style.visibility = "hidden";
-}
  //==============================================================
  function deleteRow()  
 {   

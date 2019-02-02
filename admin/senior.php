@@ -1,11 +1,11 @@
 <?php
 session_start();
-if(!$_SESSION["iD"]){
+if(!$_SESSION["username"]){
     //Do not show protected data, redirect to login...
     header("Location: ../user.php");
 }
 
-$userid=$_SESSION["iD"];
+$userid=$_SESSION["username"];
 $_SESSION["id"] = $userid;
 ?>
 <html>
@@ -156,8 +156,8 @@ $o=$num_rows["amount4"];
 $p=$num_rows["contact"];
 $q=$num_rows["dtime"];
 $r=$num_rows["teller"];
-	
-	echo "<tr><td class='tds'>" .$b."</td>". "<td class='tds'>" .$d."</td>". "<td class='tds'>" .$e."</td>". "<td class='tds'>" .$f. "</td>". "<td class='tds'>" .$g."</td>"."<td class='tds'>" .$h. "</td>"."<td class='tds'>" .$in. "</td>"."<td class='tds'>" .$j. "</td>"."<td class='tds'>" .$k. "</td>"."<td class='tds'>" .$l. "</td>"."<td class='tds'>" .$m. "</td>"."<td class='tds'>" .$n. "</td>"."<td class='tds'>" .$o. "</td>"."<td class='tds'>" .$p. "</td>"."<td class='tds'>" .$q. "</td>"."<td class='tds'>" .$r. "</td>"."</tr>";
+$s=$num_rows["user"];	
+	echo "<tr><td class='tds'>" .$b."</td>". "<td class='tds'>" .$d."</td>". "<td class='tds'>" .$e."</td>". "<td class='tds'>" .$f. "</td>". "<td class='tds'>" .$g."</td>"."<td class='tds'>" .$h. "</td>"."<td class='tds'>" .$in. "</td>"."<td class='tds'>" .$j. "</td>"."<td class='tds'>" .$k. "</td>"."<td class='tds'>" .$l. "</td>"."<td class='tds'>" .$m. "</td>"."<td class='tds'>" .$n. "</td>"."<td class='tds'>" .$o. "</td>"."<td class='tds'>" .$p. "</td>"."<td class='tds'>" .$q. "</td>"."<td class='tds'>" .$r." ".$s. "</td>"."</tr>";
 }
 }
 else{
@@ -187,8 +187,9 @@ $o=$num_rows["amount4"];
 $p=$num_rows["contact"];
 $q=$num_rows["dtime"];
 $r=$num_rows["teller"];
+$s=$num_rows["user"];
 	
-	echo "<tr><td class='tds'>" .$b."</td>". "<td class='tds'>" .$d."</td>". "<td class='tds'>" .$e."</td>". "<td class='tds'>" .$f. "</td>". "<td class='tds'>" .$g."</td>"."<td class='tds'>" .$h. "</td>"."<td class='tds'>" .$in. "</td>"."<td class='tds'>" .$j. "</td>"."<td class='tds'>" .$k. "</td>"."<td class='tds'>" .$l. "</td>"."<td class='tds'>" .$m. "</td>"."<td class='tds'>" .$n. "</td>"."<td class='tds'>" .$o. "</td>"."<td class='tds'>" .$p. "</td>"."<td class='tds'>" .$q. "</td>"."<td class='tds'>" .$r. "</td>"."</tr>";
+	echo "<tr><td class='tds'>" .$b."</td>". "<td class='tds'>" .$d."</td>". "<td class='tds'>" .$e."</td>". "<td class='tds'>" .$f. "</td>". "<td class='tds'>" .$g."</td>"."<td class='tds'>" .$h. "</td>"."<td class='tds'>" .$in. "</td>"."<td class='tds'>" .$j. "</td>"."<td class='tds'>" .$k. "</td>"."<td class='tds'>" .$l. "</td>"."<td class='tds'>" .$m. "</td>"."<td class='tds'>" .$n. "</td>"."<td class='tds'>" .$o. "</td>"."<td class='tds'>" .$p. "</td>"."<td class='tds'>" .$q. "</td>"."<td class='tds'>"  .$r." ".$s.  "</td>"."</tr>";
 
 
 }
