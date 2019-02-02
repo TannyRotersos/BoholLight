@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(0);
 ini_set('display_errors', 0);
 $hostname="localhost";
@@ -21,6 +22,7 @@ if($a==null){
 	echo "--";
 }
 else{
+	$_SESSION["que1"]=$a;
 	echo "$a";
 
 }

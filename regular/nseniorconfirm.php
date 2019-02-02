@@ -52,7 +52,7 @@ $a_padded = sprintf("%02d", $a);
 mysqli_query($link, "INSERT INTO que1(quenumber, name, accountnum, amount,name2, accountnum2, amount2,name3, accountnum3, amount3, name4, accountnum4, amount4,taposna, contact) VALUES ('BL$a_padded','$id1','$num1','$amt1','$id2','$num2','$amt2','$id3','$num3','$amt3','$id4','$num4','$amt4',0,'$contact')");
 mysqli_query($link, "UPDATE que SET contact='$contact' where quenumber=$a");
 
-session_destroy();
+
 
 
 
