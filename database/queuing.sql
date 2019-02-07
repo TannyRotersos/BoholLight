@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2019 at 04:57 AM
+-- Generation Time: Feb 07, 2019 at 05:57 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -42,10 +42,10 @@ CREATE TABLE `accountreg` (
 
 INSERT INTO `accountreg` (`id`, `teller`, `userid`, `stat`, `link`) VALUES
 (1, 1, '', 'offline', 'teller/teller1.php'),
-(2, 2, 'teller1', 'offline', 'teller/teller2.php'),
-(3, 3, 'teller1', 'offline', 'teller/teller3.php'),
-(4, 4, 'teller1', 'offline', 'teller/teller4.php'),
-(6, 5, 'tanny', 'offline', '');
+(2, 2, '', 'offline', 'teller/teller2.php'),
+(3, 3, '', 'offline', 'teller/teller3.php'),
+(4, 4, '', 'offline', 'teller/teller4.php'),
+(6, 5, '', 'offline', '');
 
 -- --------------------------------------------------------
 
@@ -84,6 +84,7 @@ INSERT INTO `accounts` (`id`, `userid`, `pass`, `link`, `accountype`, `stat`, `f
 
 CREATE TABLE `display` (
   `quenumber` varchar(20) NOT NULL,
+  `done` int(2) NOT NULL,
   `teller` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -91,11 +92,11 @@ CREATE TABLE `display` (
 -- Dumping data for table `display`
 --
 
-INSERT INTO `display` (`quenumber`, `teller`) VALUES
-('BL18', 1),
-('', 2),
-('', 3),
-('', 4);
+INSERT INTO `display` (`quenumber`, `done`, `teller`) VALUES
+('', 1, 1),
+('', 1, 2),
+('', 1, 3),
+('', 1, 4);
 
 -- --------------------------------------------------------
 

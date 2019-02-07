@@ -58,12 +58,14 @@ $q=$num_rows["contact"];
 }
 //===============================================================
 
-mysqli_query($link, "UPDATE display SET quenumber='$b' where teller=4");
+mysqli_query($link, "UPDATE display SET quenumber='$b', done=0 where teller=4");
 
 //===============================================================
+
+
 }
 else{
-  mysqli_query($link, "UPDATE display SET quenumber='' where teller=4");
+  mysqli_query($link, "UPDATE display SET quenumber='',done=1 where teller=4");
 
 }
 
@@ -174,7 +176,7 @@ fwrite($myfile, $txt);
           <td colspan="3"><center><o>QUEUE NUMBER &nbsp;&nbsp;</o><n><b><?php echo "$b";?></b></n></center></td>
         </tr>  
         <tr>
-          <td>Name<?php echo "$userid";?></td>
+          <td>Name</td>
           <td>Account Number<br></td>
           <td>Amount</td>
         </tr>

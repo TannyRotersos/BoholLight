@@ -65,13 +65,14 @@ $p=$num_rows["taposna"];
 $q=$num_rows["contact"];
 }
 //===============================================================
-mysqli_query($link, "UPDATE display SET quenumber='$aa' where teller=2");
+mysqli_query($link, "UPDATE display SET quenumber='$aa', done=0 where teller=2");
+
 //===============================================================
 
 
 }
 else{
-  mysqli_query($link, "UPDATE display SET quenumber='' where teller=2");
+  mysqli_query($link, "UPDATE display SET quenumber='',done=1 where teller=2");
 
 }
 //#############################Here starts the sms notification

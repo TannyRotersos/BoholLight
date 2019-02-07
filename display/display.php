@@ -1,9 +1,3 @@
-<?php
-session_start();
-
-$que1=$_SESSION["que1"];
-
-?>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -54,7 +48,7 @@ font-size: 66px;
 </tr>
 <tr></tr>
 <tr>
-    <td class="tellernumber1" ><div id="links" value="<?php echo "$que1" ?>" onchange="play(this.value)"></td>
+    <td class="tellernumber1" ><div id="links"></td>
     <td class="tellernumber">1</td>
 </tr>
 <tr>
@@ -83,19 +77,19 @@ font-size: 66px;
                  }
            
  var auto_refresh = setInterval( function() {
-  $('#links').load('display1.php'); 
+  $('#links').load('display1.php');
 }, 5000); 
  var auto_refresh2 = setInterval( function() {
   $('#links2').load('display2.php'); 
-}, 1000);
+}, 5000);
 
 var auto_refresh2 = setInterval( function() {
   $('#links3').load('display3.php'); 
-}, 1000); 
+}, 5000); 
 
 var auto_refresh2 = setInterval( function() {
   $('#links4').load('display4.php'); 
-}, 1000); 
+}, 5000); 
 
  </script>
 
