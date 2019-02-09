@@ -51,7 +51,7 @@ for($i=0; $i<$num_rows=mysqli_fetch_array($result);$i++){
 
 if($user1==$tellerid&&password_verify($pass1, $pass)&&$stat=='offline'){
 	$_SESSION["username"] = $tellerid;
-	if($actype=='admin'&&$accountype==5){
+	if($actype=='admin'&&$accountype==7){
 		$_SESSION["username"] = $tellerid;
 	header('Location: '.$link);
 	}
@@ -106,7 +106,9 @@ User Type:<select name="accountype">
 	<option value="2">Teller 2</option>
 	<option value="3">Teller 3</option>
 	<option value="4">Teller 4</option>
-	<option value="5">Admin</option>
+	<option value="5">Teller 5</option>
+	<option value="6">Teller 6</option>
+	<option value="7">Admin</option>
 </select>
 
 

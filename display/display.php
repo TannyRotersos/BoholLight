@@ -65,7 +65,11 @@ font-size: 66px;
 </tr>
 <tr>
     <td class="tellernumber1"><div id="links5"></div></td>
-    <td class="tellernumber3"></td>
+    <td class="tellernumber">5</td>
+</tr>
+<tr>
+    <td class="tellernumber1"><div id="links6"></div></td>
+    <td class="tellernumber">6</td>
 </tr>
 </table>
      
@@ -90,7 +94,12 @@ var auto_refresh2 = setInterval( function() {
 var auto_refresh2 = setInterval( function() {
   $('#links4').load('display4.php'); 
 }, 5000); 
-
+var auto_refresh2 = setInterval( function() {
+  $('#links5').load('display5.php'); 
+}, 5000); 
+var auto_refresh2 = setInterval( function() {
+  $('#links6').load('display6.php'); 
+}, 5000); 
  </script>
 
 <audio id="audio" src="beep.mp3" ></audio>

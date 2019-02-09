@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2019 at 05:57 AM
+-- Generation Time: Feb 09, 2019 at 01:48 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -45,7 +45,9 @@ INSERT INTO `accountreg` (`id`, `teller`, `userid`, `stat`, `link`) VALUES
 (2, 2, '', 'offline', 'teller/teller2.php'),
 (3, 3, '', 'offline', 'teller/teller3.php'),
 (4, 4, '', 'offline', 'teller/teller4.php'),
-(6, 5, '', 'offline', '');
+(7, 5, '', 'offline', 'teller/teller5.php'),
+(8, 6, '', 'offline', 'teller/teller6.php'),
+(9, 7, '', 'offline', '');
 
 -- --------------------------------------------------------
 
@@ -96,7 +98,9 @@ INSERT INTO `display` (`quenumber`, `done`, `teller`) VALUES
 ('', 1, 1),
 ('', 1, 2),
 ('', 1, 3),
-('', 1, 4);
+('', 1, 4),
+('', 1, 5),
+('', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -244,7 +248,7 @@ ALTER TABLE `senior`
 -- AUTO_INCREMENT for table `accountreg`
 --
 ALTER TABLE `accountreg`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `accounts`
