@@ -16,8 +16,7 @@ $queue=$_SESSION['qn'];
     
 </head>
 <body onload="hidelec(); hidwat();">
-    <center><img src="../img/3.png" class="disp1">
-</center>
+    
  <center>
  <div class="not">
     
