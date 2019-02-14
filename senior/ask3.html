@@ -11,7 +11,7 @@
          <center><o>Please enter your mobile number to be notified through SMS if your number is near.</o>  <br><br></center>
     
             <form action="seniorconfirm.php" method="POST">
-       		<input type="number" name="contact"  placeholder="Contact Number" class="numbertf"> <br><br>
+       		<input pattern="[0-9]{11}" title="PLEASE PUT 11-DIGIT NUMBER" onKeyDown="if(this.value.length==11 && event.keyCode!=8) return false;"type="number" name="contact"  placeholder="Contact Number" class="numbertf"> <br><br>
        		<button type="submit" class="numsub"><b> Submit </b></buttton>
     		</form>
 
