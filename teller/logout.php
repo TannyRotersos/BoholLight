@@ -17,6 +17,14 @@ mysqli_query($link, "UPDATE accounts set stat='offline' where userid='$tellernam
 mysqli_query($link, "UPDATE display set quenumber='' where teller=$tellerid");
 mysqli_query($link, "UPDATE accountreg set stat='offline', userid='' where teller=$tellerid");
 
+$myfile = fopen("../tests/teller"."$tellerid".".txt", "w") or die("Unable to open file!");
+
+  $txt = "--";
+
+fwrite($myfile, $txt);
+
+
+
 session_destroy();
 header("Location: ../user.php");
 
