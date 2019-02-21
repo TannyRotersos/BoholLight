@@ -55,10 +55,15 @@ if($user1==$tellerid&&password_verify($pass1, $pass)&&$stat=='offline'){
 		$_SESSION["username"] = $tellerid;
 	header('Location: '.$link);
 	}
-	else{
+	
+	else if($actype=='teller'&&$accountype==1||$accountype==2||$accountype==3||$accountype==4||$accountype==5||$accountype==6){
 		$_SESSION["username"] = $tellerid;
-	header('Location: '.$nlink);	
-	}		
+	header('Location: '.$nlink);
+	}
+	else{
+		$err="Account Id or Password is Incorrect";
+	}	
+			
 }
 else if($user1==$tellerid&&password_verify($pass1, $pass)&&$stat=='online'){
 	$err="Account is already online";
