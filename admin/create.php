@@ -30,7 +30,7 @@
 	<input type="text" name="lname" id="lname" class="create" placeholder="Lastname"required><br>
 	<input type="text" name="age" id="age" class="create" placeholder="Age" required><br>
 	<input type="text" name="add" id="add" class="create"placeholder="Address" required><br>
-	<input type="text" name="cnum" id="cnum" class="create" placeholder="Contact Number"required><br>
+	<input type="text" name="cnum" id="cnum" class="create" placeholder="Contact Number"required pattern="[0-9]{11}" title="PLEASE PUT 11-DIGIT NUMBER" onKeyDown="if(this.value.length==12 && event.keyCode!=8) return false;"><br>
 
 	<select name="actype" id="actype" class="create" placeholder="Account Type">
 		<option value="teller/teller.php">Regular Teller Account</option>

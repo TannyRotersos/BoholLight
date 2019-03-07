@@ -62,7 +62,8 @@ $r=$num_rows["dtime"];
 date_default_timezone_set("Asia/Hong_Kong");
 
 // Prints something like: Monday 8th of August 2005 03:12:46 PM
-$rr=date('l,F j,Y h:i a');
+$rr=date('F j,Y h:i a');
+//$rr=date('l,F j,Y h:i a');
 
 
 /**

@@ -48,7 +48,8 @@ $q=$num_rows["contact"];
 date_default_timezone_set("Asia/Hong_Kong");
 
 // Prints something like: Monday 8th of August 2005 03:12:46 PM
-$rr=date('l,F j,Y h:i a');
+$rr=date('F j,Y h:i a');
+//$rr=date('l,F j,Y h:i a');
 /**
  * Install the printer using USB printing support, and the "Generic / Text Only" driver,
  * then share it (you can use a firewall so that it can only be seen locally).
